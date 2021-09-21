@@ -51,7 +51,7 @@ export default function Home() {
         <Center>
           <Grid>
             {info ? (
-              <Grid marginLeft='3'>
+              <Grid marginLeft='3' marginTop="3">
                 <Text>Halo {info}</Text>
                 <strong>Ini Target Customer untuk hari ini</strong>
               </Grid>
