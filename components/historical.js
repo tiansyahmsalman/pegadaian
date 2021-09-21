@@ -8,13 +8,13 @@ import { InfoIcon } from '@chakra-ui/icons'
 
 export default function Historical(props) {
   const data = props.data
-  const basicUrl = 'https://prod-qore-app.qorebase.io/vTS3B25NhFzZURO'
+  const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
+  const apiKey = process.env.API_KEY
   const [products, setProducts] = React.useState([]);
   const [campains, setCampains] = React.useState([]);
   const [customerServices, setCustomerServices] = React.useState([]);
 
   React.useEffect(() => {
-    console.log(data.id);
     if (data.id) {
       fetchDataPoducts()
       fetchCampaigns()
@@ -29,11 +29,10 @@ export default function Historical(props) {
   }
 
   function fetchDataPoducts () {
-    // fetch(`${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc&audience=${data.name}`, {
     fetch(`${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc`, {
       method: "GET",
       headers: {
-        'x-api-key': 'cd4e1ee0-e3fa-4973-b773-e2aee6dcc043'
+        'x-api-key': apiKey
       },
     })
     .then((res) => res.json())
@@ -46,11 +45,10 @@ export default function Historical(props) {
   }
 
   function fetchCampaigns () {
-    // fetch(`${basicUrl}/campaignsWithAudienceFilter/rows?limit=50&offset=0&$order=asc&audience=${data.name}`, {
     fetch(`${basicUrl}/campaignsWithAudienceFilter/rows?limit=50&offset=0&$order=asc`, {
       method: "GET",
       headers: {
-        'x-api-key': 'cd4e1ee0-e3fa-4973-b773-e2aee6dcc043'
+        'x-api-key': apiKey
       },
     })
     .then((res) => res.json())
@@ -63,11 +61,10 @@ export default function Historical(props) {
   }
 
   function fetchCustomerServices () {
-    // fetch(`${basicUrl}/customerServicesWithAudiences/rows?limit=50&offset=0&$order=asc&audience=${data.name}`, {
     fetch(`${basicUrl}/customerServicesWithAudiences/rows?limit=50&offset=0&$order=asc`, {
       method: "GET",
       headers: {
-        'x-api-key': 'cd4e1ee0-e3fa-4973-b773-e2aee6dcc043'
+        'x-api-key': apiKey
       },
     })
     .then((res) => res.json())

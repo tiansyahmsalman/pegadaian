@@ -19,10 +19,11 @@ import Historical from '../../components/historical';
 import Layout from '../../components/layout';
 
 export default function Detail(props) {
-  const basicUrl = 'https://prod-qore-app.qorebase.io/vTS3B25NhFzZURO'
+  const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
+  const apiKey = process.env.API_KEY
   const [data, setData] = React.useState({});
-  const [info, setInfo] = React.useState('');
   const query = useQuery();
+  
 
   React.useEffect(() => {
     if (!query) {
@@ -49,7 +50,7 @@ export default function Detail(props) {
     fetch(`${basicUrl}/allAudiences/rows/${id}`, {
       method: "GET",
       headers: {
-        'x-api-key': 'cd4e1ee0-e3fa-4973-b773-e2aee6dcc043'
+        'x-api-key': apiKey
       },
     })
     .then((res) => res.json())
@@ -63,14 +64,9 @@ export default function Detail(props) {
 
   return (
     <div>
-      <Head>
-        <title>Pegadaian</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Layout className={styles.main}>
+      <Layout name={data.name} className={styles.main}>
         <Center>
-          <Grid>
+          <Grid maxWidth='900px'>
             <Image
               src={data.picture}
               alt="image"
@@ -84,7 +80,7 @@ export default function Detail(props) {
                 <Text>Kota : {data.city}</Text>
               </Container>
             </Grid>
-            <Tabs isFitted variant='enclosed' maxWidth='900px'>
+            <Tabs isFitted variant='enclosed'>
               <TabList paddingTop='4'>
                 <Tab _selected={{ color: "white", bg: "#5AC421" }} fontSize='1xl' fontWeight='bold' marginLeft='4'>Detail</Tab>
                 <Tab _selected={{ color: "white", bg: "#5AC421" }} fontSize='1xl' fontWeight='bold' marginRight='4'>Historical</Tab>

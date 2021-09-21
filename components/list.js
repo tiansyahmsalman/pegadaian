@@ -22,7 +22,7 @@ export default function List(props) {
           />
         </Center>
         
-        <Container maxWidth='650px'>
+        <Container>
           <strong>{data.name}</strong>
           <Text>{data.address}</Text>
           <Text>{data.city}</Text>

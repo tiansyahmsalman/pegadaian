@@ -1,14 +1,14 @@
-import styles from '../styles/style.module.css'
+import styles from '../../styles/style.module.css'
 import React from 'react';
-import List from '../components/list'
+import List from '../../components/list'
 import {
   Text,
   Grid,
   Center
 } from "@chakra-ui/react";
-import Layout from '../components/layout';
+import Layout from '../../components/layout';
 
-export default function Home() {
+export default function Landing() {
   const [data, setData] = React.useState([]);
   const [info, setInfo] = React.useState('');
   const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
