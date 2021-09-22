@@ -22,7 +22,7 @@ export default function List(props) {
           />
         </Center>
         
-        <Container>
+        <Container p='0' ml='3'>
           <strong>{data.name}</strong>
           <Text>{data.address}</Text>
           <Text>{data.city}</Text>

@@ -5,6 +5,7 @@ import {
     Grid
   } from "@chakra-ui/react";
 import { InfoIcon } from '@chakra-ui/icons'
+import axios from 'axios'
 
 export default function Historical(props) {
   const data = props.data
@@ -22,58 +23,51 @@ export default function Historical(props) {
     }
     
   },[data]);
-  
-  function handleErrors(res) {
-    if (!res) throw new Error(res.error);
-    return res;
-  }
 
   function fetchDataPoducts () {
-    fetch(`${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc`, {
-      method: "GET",
-      headers: {
-        'x-api-key': apiKey
-      },
-    })
-    .then((res) => res.json())
-    .then(handleErrors)
-    .then((data) => {
+    const url = `${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc`
+    const headers = { 'x-api-key': apiKey }
+    
+    axios.get(url, { headers })
+    .then(({data}) => {
       if (data.nodes) {
         setProducts(data.nodes)
       }
     }) 
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   function fetchCampaigns () {
-    fetch(`${basicUrl}/campaignsWithAudienceFilter/rows?limit=50&offset=0&$order=asc`, {
-      method: "GET",
-      headers: {
-        'x-api-key': apiKey
-      },
-    })
-    .then((res) => res.json())
-    .then(handleErrors)
-    .then((data) => {
+    const url = `${basicUrl}/campaignsWithAudienceFilter/rows?limit=50&offset=0&$order=asc`
+    const headers = { 'x-api-key': apiKey }
+    
+    axios.get(url, { headers })
+    .then(({data}) => {
       if (data.nodes) {
         setCampains(data.nodes)
       }
     }) 
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   function fetchCustomerServices () {
-    fetch(`${basicUrl}/customerServicesWithAudiences/rows?limit=50&offset=0&$order=asc`, {
-      method: "GET",
-      headers: {
-        'x-api-key': apiKey
-      },
-    })
-    .then((res) => res.json())
-    .then(handleErrors)
-    .then((data) => {
+    const url = `${basicUrl}/customerServicesWithAudiences/rows?limit=50&offset=0&$order=asc`
+    const headers = { 'x-api-key': apiKey }
+    
+    axios.get(url, { headers })
+    .then(({data}) => {
       if (data.nodes) {
         setCustomerServices(data.nodes)
       }
     }) 
+    .catch(error => {
+      console.log(error)
+    })
+    
   }
 
   return (
@@ -103,7 +97,7 @@ export default function Historical(props) {
                 )
               )
             }
-            return component
+            return <div key={i}>{component}</div>
           })
         }
       </Grid>
@@ -133,7 +127,7 @@ export default function Historical(props) {
                 )
               )
             }
-            return component
+            return <div key={i}>{component}</div>
           })
         }
       </Grid>
@@ -164,7 +158,7 @@ export default function Historical(props) {
                 )
               )
             }
-            return component
+            return <div key={i}>{component}</div>
           })
         }
       </Grid>

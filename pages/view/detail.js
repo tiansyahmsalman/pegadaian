@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import styles from '../../styles/style.module.css'
 import React from 'react';
 import { useRouter } from 'next/router'
@@ -15,22 +14,39 @@ import {
   Center
 } from "@chakra-ui/react";
 import Profile from '../../components/profile'
-import Historical from '../../components/historical';
-import Layout from '../../components/layout';
+import Historical from '../../components/historical'
+import Layout from '../../components/layout'
+import axios from 'axios'
+import auth from '../services/auth';
 
 export default function Detail(props) {
   const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
   const apiKey = process.env.API_KEY
   const [data, setData] = React.useState({});
   const query = useQuery();
-  
+  const router = useRouter()
 
-  React.useEffect(() => {
+  React.useEffect(async () => {
     if (!query) {
       return;
     }
-    fetchData(query.id)
-  }, [query]);
+
+    if(localStorage.getItem('token')){
+      let user
+      try {
+        user = await auth()
+        if (!user.data) {
+          router.push('/view/login')
+        } else {
+          fetchData(query.id)
+        }
+      } catch (error) {
+        router.push('/view/login')
+      }
+    } else {
+      router.push('/view/login')
+    }
+  },[]);
 
   function useQuery() {
     const router = useRouter();
@@ -47,24 +63,23 @@ export default function Detail(props) {
   }
 
   function fetchData (id) {
-    fetch(`${basicUrl}/allAudiences/rows/${id}`, {
-      method: "GET",
-      headers: {
-        'x-api-key': apiKey
-      },
-    })
-    .then((res) => res.json())
-    .then(handleErrors)
-    .then((data) => {
+    const url = `${basicUrl}/allAudiences/rows/${id}`
+    const headers = { 'x-api-key': apiKey }
+    
+    axios.get(url, { headers })
+    .then(({data}) => {
       if (data) {
         setData(data) 
       }
+    })
+    .catch(error => {
+      console.log(error)
     }) 
   }
 
   return (
     <div>
-      <Layout name={data.name} className={styles.main}>
+      <Layout title='detail' name={data.name} className={styles.main}>
         <Center>
           <Grid maxWidth='900px'>
             <Image
