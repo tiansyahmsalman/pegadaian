@@ -5,10 +5,7 @@ import {
     Grid
   } from '@chakra-ui/react'
 import { InfoIcon } from '@chakra-ui/icons'
-import axios from 'axios'
-import serviceProducts from '../pages/services/getDataPoducts'
-import serviceCampaigns from '../pages/services/getCampaigns'
-import serviceCustomerServices from '../pages/services/getCustomerServices'
+import { useNavbarContext } from './navbarContext'
 
 export default function Historical(props) {
   const data = props.data
@@ -17,6 +14,7 @@ export default function Historical(props) {
   const [products, setProducts] = React.useState([])
   const [campains, setCampains] = React.useState([])
   const [customerServices, setCustomerServices] = React.useState([])
+  const navbarContext = useNavbarContext()
 
   React.useEffect(() => {
     if (data.id) {
@@ -28,21 +26,21 @@ export default function Historical(props) {
   },[data])
 
   async function fetchDataPoducts () {
-    const product = await serviceProducts()
+    const product = await navbarContext.getProducts()
     if (product.data) {
       setProducts(product.data.nodes)
     } else {}
   }
 
   async function fetchCampaigns () {
-    const campaigns = await serviceCampaigns()
+    const campaigns = await navbarContext.getCampaigns()
     if (campaigns.data) {
       setCampains(campaigns.data.nodes)
     } else {}
   }
 
   async function fetchCustomerServices () {
-    const customerServices = await serviceCustomerServices()
+    const customerServices = await navbarContext.getCustomerServices()
     if (customerServices.data) {
       setCustomerServices(customerServices.data.nodes)
     } else {}

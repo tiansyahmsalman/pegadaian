@@ -11,12 +11,13 @@ import {
   } from '@chakra-ui/react'
   import React from 'react'
   import { useRouter } from 'next/router'
-  import loginService from '../services/login'
+  import { useNavbarContext } from '../../components/navbarContext'
   
   export default function Login() {
     const [email, setEmail] = React.useState('')
     const [password , setPassword] = React.useState('')
     const router = useRouter()
+    const navbarContext = useNavbarContext()
 
     React.useEffect(() => {
       if(localStorage.getItem('token')){
@@ -29,7 +30,7 @@ import {
     }
 
     async function login () {
-      let user = await loginService(email,password)
+      let user = await navbarContext.login(email, password)
       if (user.data) {
         localStorage.setItem('token', user.data.token)
         router.push('/')

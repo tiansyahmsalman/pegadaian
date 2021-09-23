@@ -8,16 +8,16 @@ import {
 } from '@chakra-ui/react'
 import Layout from '../components/layout'
 import { useRouter } from 'next/router'
-import auth from './services/auth'
-import serviceDataAudiences from './services/getAudiences'
+import { useNavbarContext } from '../components/navbarContext'
 
 export default function Home() {
   const [data, setData] = React.useState([])
   const [info, setInfo] = React.useState('')
   const router = useRouter()
+  const navbarContext = useNavbarContext()
 
   React.useEffect(async () => {
-    const user = await auth()
+    const user = await navbarContext.auth()
     if (!user.data) {
       router.push('/view/login')
     } else {
@@ -26,7 +26,7 @@ export default function Home() {
   },[])
 
   async function fetchDataAudiences () {
-    const audiences = await serviceDataAudiences()
+    const audiences = await navbarContext.getAudiences()
     if (audiences.data) {
       setInfo(`${audiences.data.nodes[0].dedicatedSales.displayField} (${audiences.data.nodes[0].city}) ,`)
       setData(audiences.data.nodes)
