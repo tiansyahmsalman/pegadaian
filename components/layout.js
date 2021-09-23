@@ -10,7 +10,7 @@ export default function Layout(props) {
     <>
       <Head>
         <title>Pegadaian</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       {props.title === 'home' ? <NavbarHome /> : <></>}
       {props.title === 'detail' ? <NavbarDetail name={props.name} /> : <></>}

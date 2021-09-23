@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 import {
     Flex,
     Text,
     Grid
-  } from "@chakra-ui/react";
+  } from '@chakra-ui/react'
 import { InfoIcon } from '@chakra-ui/icons'
 import axios from 'axios'
 
@@ -11,9 +11,9 @@ export default function Historical(props) {
   const data = props.data
   const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
   const apiKey = process.env.API_KEY
-  const [products, setProducts] = React.useState([]);
-  const [campains, setCampains] = React.useState([]);
-  const [customerServices, setCustomerServices] = React.useState([]);
+  const [products, setProducts] = React.useState([])
+  const [campains, setCampains] = React.useState([])
+  const [customerServices, setCustomerServices] = React.useState([])
 
   React.useEffect(() => {
     if (data.id) {
@@ -22,7 +22,7 @@ export default function Historical(props) {
       fetchCustomerServices()
     }
     
-  },[data]);
+  },[data])
 
   function fetchDataPoducts () {
     const url = `${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc`
@@ -72,18 +72,18 @@ export default function Historical(props) {
 
   return (
     <>
-      <Flex backgroundColor='blue.50' borderRadius="5" marginBottom='3' >
+      <Flex backgroundColor='blue.50' borderRadius='5' marginBottom='3' >
           <InfoIcon boxSize='6' color='purple.900' margin='3' />
           <Text fontSize='1xl' fontWeight='bold' margin='3'>Products</Text>
       </Flex>
-      <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+      <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
         <strong>Product History</strong>
         {products.map((product, i)=>{
             let component
             { 
               i !== products.length-1 ? (
                 component = (
-                  <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+                  <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
                     <strong>{product.name}</strong>
                     <Text>{product.activity}</Text>
                   </Grid>
@@ -102,17 +102,17 @@ export default function Historical(props) {
         }
       </Grid>
      
-      <Flex backgroundColor='blue.50' borderRadius="5">
+      <Flex backgroundColor='blue.50' borderRadius='5'>
           <InfoIcon boxSize='6' color='purple.900' margin='3' />
           <Text fontSize='1xl' fontWeight='bold' margin='3'>Campaigns</Text>
       </Flex>
-      <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+      <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
         {campains.map((campain, i)=>{
             let component
             { 
               i !== campains.length-1 ? (
                 component = (
-                  <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+                  <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
                     <strong>{campain.name}</strong>
                     <Text>{campain.description}</Text>
                     <Text>{campain.campaignDate}</Text>
@@ -132,7 +132,7 @@ export default function Historical(props) {
         }
       </Grid>
       
-      <Flex backgroundColor='blue.50' borderRadius="5" marginBottom='3' >
+      <Flex backgroundColor='blue.50' borderRadius='5' marginBottom='3' >
           <InfoIcon boxSize='6' color='purple.900' margin='3' />
           <Text fontSize='1xl' fontWeight='bold' margin='3'>Customer Services</Text>
       </Flex>
@@ -142,7 +142,7 @@ export default function Historical(props) {
             { 
               i !== customerServices.length-1 ? (
                 component = (
-                  <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+                  <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
                     <strong>{customerService.name}</strong>
                     <Text>{customerService.type}</Text>
                     <Text>{customerService.contactedAt}</Text>

@@ -8,26 +8,23 @@ import {
     Button,
     Heading,
     Text,
-  } from '@chakra-ui/react';
-  import React from 'react';
+  } from '@chakra-ui/react'
+  import React from 'react'
   import { useRouter } from 'next/router'
   import axios from 'axios'
   
   export default function Login() {
     const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
     const apiKey = process.env.API_KEY
-    const [email, setEmail] = React.useState('');
-    const [password , setPassword] = React.useState('');
+    const [email, setEmail] = React.useState('')
+    const [password , setPassword] = React.useState('')
     const router = useRouter()
 
     React.useEffect(() => {
       if(localStorage.getItem('token')){
-        //auth
-        if (true) {
-          router.push('/')
-        }
+        router.push('/')
       }
-    },[]);
+    },[])
 
     function handleClick() {
       login()
@@ -37,13 +34,13 @@ import {
       const url = `${basicUrl}/authenticate/password`
       const headers = { 'x-api-key': apiKey }
       const data = {
-        "identifier": email,
-        "password": password
+        'identifier': email,
+        'password': password
       }
       axios.post(url, data, headers)
       .then(({data}) => {
         if (data.token) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('token', data.token)
           router.push('/')
         }
         setEmail('')
@@ -72,13 +69,13 @@ import {
             boxShadow={'lg'}
             p={8}>
             <Stack spacing={4}>
-              <FormControl id="email">
+              <FormControl id='email'>
                 <FormLabel>Email</FormLabel>
-                <Input type="email" onChange={e => setEmail(e.target.value)} />
+                <Input type='email' onChange={e => setEmail(e.target.value)} />
               </FormControl>
-              <FormControl id="password">
+              <FormControl id='password'>
                 <FormLabel>Password</FormLabel>
-                <Input type="password" onChange={e => setPassword(e.target.value)} />
+                <Input type='password' onChange={e => setPassword(e.target.value)} />
               </FormControl>
               <Stack spacing={10}>
                 <Button
@@ -96,5 +93,5 @@ import {
           </Box>
         </Stack>
       </Flex>
-    );
+    )
   }

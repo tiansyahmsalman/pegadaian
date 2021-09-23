@@ -1,19 +1,19 @@
 import styles from '../styles/style.module.css'
-import React from 'react';
+import React from 'react'
 import List from '../components/list'
 import {
   Text,
   Grid,
   Center
-} from "@chakra-ui/react";
+} from '@chakra-ui/react'
 import Layout from '../components/layout'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import auth from './services/auth'
 
 export default function Home() {
-  const [data, setData] = React.useState([]);
-  const [info, setInfo] = React.useState('');
+  const [data, setData] = React.useState([])
+  const [info, setInfo] = React.useState('')
   const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
   const apiKey = process.env.API_KEY
   const router = useRouter()
@@ -34,7 +34,7 @@ export default function Home() {
     } else {
       router.push('/view/login')
     }
-  },[]);
+  },[])
 
   function fetchDataAudiences () {
     const url = `${basicUrl}/allAudiences/rows?limit=50&offset=0&$order=asc`
@@ -64,7 +64,7 @@ export default function Home() {
               </Grid>
             ):<div />}
             {data.map((dt)=>{
-              return <List key={dt.id} data={dt}/>
+              return <List key={dt.id} data={dt} />
             })}
           </Grid>
         </Center>

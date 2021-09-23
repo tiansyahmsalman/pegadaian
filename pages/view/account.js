@@ -1,16 +1,18 @@
 import {
     Stack,
     Text,
-    Grid,
     Container,
     Button
-  } from '@chakra-ui/react';
-  import Layout from '../../components/layout';
-  import React from 'react';
+  } from '@chakra-ui/react'
+  import Layout from '../../components/layout'
+  import React from 'react'
   import auth from '../services/auth'
+  import { useRouter } from 'next/router'
+  import styles from '../../styles/style.module.css'
   
   export default function Account() {
-    const [user, setUser] = React.useState([]);
+    const [user, setUser] = React.useState([])
+    const router = useRouter()
 
     React.useEffect( async ()=>{
       try {
@@ -18,16 +20,21 @@ import {
         if (user.data) {
           setUser(user.data.data)
         } else {
-          console.log(user);
+          console.log(user)
         }
       } catch (error) {
-        console.log(error.message);
+        console.log(error.message)
       }
     },[])
 
+    function handleClick () {
+      localStorage.removeItem('token')
+      router.push('/view/login')
+    }
+
     return (
-      <Layout title='account'>
-        <Grid>
+      <Layout title='account' className={styles.main}>
+        <Container maxWidth='850px'>
           <Stack spacing='5' fontSize='1xl'>
             <Container />
             <Container>
@@ -43,10 +50,10 @@ import {
               <Text>{user.location}</Text>
             </Container>
             <Stack p='4'>
-              <Button bgColor={'#5AC421'} color='white' datahover='none' >Logout</Button>
+              <Button bgColor={'#5AC421'} color='white' datahover='none' onClick={handleClick} >Logout</Button>
             </Stack>
           </Stack>
-        </Grid>
+        </Container>
       </Layout>
-    );
+    )
   }
