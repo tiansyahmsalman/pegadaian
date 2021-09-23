@@ -16,20 +16,20 @@ import {
 import Profile from '../../components/profile'
 import Historical from '../../components/historical'
 import Layout from '../../components/layout'
-import auth from '../services/auth'
-import serviceDataAudience from '../services/getAudience'
+import { useNavbarContext} from '../../components/navbarContext'
 
 export default function Detail(props) {
   const [data, setData] = React.useState({})
   const query = useQuery()
   const router = useRouter()
+  const navbarContext = useNavbarContext()
 
   React.useEffect(async () => {
     if (!query) {
       return
     }
 
-    const user = await auth()
+    const user = await navbarContext.auth()
     if (!user.data) {
       router.push('/view/login')
     } else {
@@ -47,7 +47,7 @@ export default function Detail(props) {
   }
 
   async function fetchData (id) {
-    const audience = await serviceDataAudience(id)
+    const audience = await navbarContext.getAudience(id)
     if (audience.data) {
       setData(audience.data) 
     } else {}
