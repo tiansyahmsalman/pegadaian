@@ -1,6 +1,5 @@
-import Head from 'next/head'
 import styles from '../../styles/style.module.css'
-import React from 'react';
+import React from 'react'
 import { useRouter } from 'next/router'
 import {
   Container,
@@ -13,63 +12,55 @@ import {
   Tab, 
   TabPanel,
   Center
-} from "@chakra-ui/react";
+} from '@chakra-ui/react'
 import Profile from '../../components/profile'
-import Historical from '../../components/historical';
-import Layout from '../../components/layout';
+import Historical from '../../components/historical'
+import Layout from '../../components/layout'
+import auth from '../services/auth'
+import serviceDataAudience from '../services/getAudience'
 
 export default function Detail(props) {
-  const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
-  const apiKey = process.env.API_KEY
-  const [data, setData] = React.useState({});
-  const query = useQuery();
-  
+  const [data, setData] = React.useState({})
+  const query = useQuery()
+  const router = useRouter()
 
-  React.useEffect(() => {
+  React.useEffect(async () => {
     if (!query) {
-      return;
+      return
     }
-    fetchData(query.id)
-  }, [query]);
+
+    const user = await auth()
+    if (!user.data) {
+      router.push('/view/login')
+    } else {
+      fetchData(query.id)
+    }
+  },[])
 
   function useQuery() {
-    const router = useRouter();
+    const router = useRouter()
     const hasQueryParams =
-      /\[.+\]/.test(router.route) || /\?./.test(router.asPath);
-    const ready = !hasQueryParams || Object.keys(router.query).length > 0;
-    if (!ready) return null;
-    return router.query;
-  }
-  
-  function handleErrors(res) {
-    if (!res) throw new Error(res.error);
-    return res;
+      /\[.+\]/.test(router.route) || /\?./.test(router.asPath)
+    const ready = !hasQueryParams || Object.keys(router.query).length > 0
+    if (!ready) return null
+    return router.query
   }
 
-  function fetchData (id) {
-    fetch(`${basicUrl}/allAudiences/rows/${id}`, {
-      method: "GET",
-      headers: {
-        'x-api-key': apiKey
-      },
-    })
-    .then((res) => res.json())
-    .then(handleErrors)
-    .then((data) => {
-      if (data) {
-        setData(data) 
-      }
-    }) 
+  async function fetchData (id) {
+    const audience = await serviceDataAudience(id)
+    if (audience.data) {
+      setData(audience.data) 
+    } else {}
   }
 
   return (
     <div>
-      <Layout name={data.name} className={styles.main}>
+      <Layout title='detail' name={data.name} className={styles.main}>
         <Center>
-          <Grid maxWidth='900px'>
+          <Grid maxWidth='850px'>
             <Image
               src={data.picture}
-              alt="image"
+              alt='image'
               fit='cover'
               boxSize='900px'
               height='450px'
@@ -82,8 +73,8 @@ export default function Detail(props) {
             </Grid>
             <Tabs isFitted variant='enclosed'>
               <TabList paddingTop='4'>
-                <Tab _selected={{ color: "white", bg: "#5AC421" }} fontSize='1xl' fontWeight='bold' marginLeft='4'>Detail</Tab>
-                <Tab _selected={{ color: "white", bg: "#5AC421" }} fontSize='1xl' fontWeight='bold' marginRight='4'>Historical</Tab>
+                <Tab _selected={{ color: 'white', bg: '#5AC421' }} fontSize='1xl' fontWeight='bold' marginLeft='4'>Detail</Tab>
+                <Tab _selected={{ color: 'white', bg: '#5AC421' }} fontSize='1xl' fontWeight='bold' marginRight='4'>Historical</Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>

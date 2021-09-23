@@ -8,9 +8,34 @@ import {
     Button,
     Heading,
     Text,
-  } from '@chakra-ui/react';
+  } from '@chakra-ui/react'
+  import React from 'react'
+  import { useRouter } from 'next/router'
+  import loginService from '../services/login'
   
-  export default function SimpleCard() {
+  export default function Login() {
+    const [email, setEmail] = React.useState('')
+    const [password , setPassword] = React.useState('')
+    const router = useRouter()
+
+    React.useEffect(() => {
+      if(localStorage.getItem('token')){
+        router.push('/')
+      }
+    },[])
+
+    function handleClick() {
+      login()
+    }
+
+    async function login () {
+      let user = await loginService(email,password)
+      if (user.data) {
+        localStorage.setItem('token', user.data.token)
+        router.push('/')
+      } else {}
+    }
+  
     return (
       <Flex
         minH={'100vh'}
@@ -30,13 +55,13 @@ import {
             boxShadow={'lg'}
             p={8}>
             <Stack spacing={4}>
-              <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+              <FormControl id='email'>
+                <FormLabel>Email</FormLabel>
+                <Input type='email' value={email} onChange={e => setEmail(e.target.value)} />
               </FormControl>
-              <FormControl id="password">
+              <FormControl id='password'>
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input type='password' value={password} onChange={e => setPassword(e.target.value)} />
               </FormControl>
               <Stack spacing={10}>
                 <Button
@@ -44,7 +69,9 @@ import {
                   color={'white'}
                   _hover={{
                     bg: '#6cb740',
-                  }}>
+                  }}
+                  onClick={handleClick}
+                >
                   Sign in
                 </Button>
               </Stack>
@@ -52,5 +79,5 @@ import {
           </Box>
         </Stack>
       </Flex>
-    );
+    )
   }

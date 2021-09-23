@@ -7,7 +7,7 @@ import {
 export default function NavbarHome() {
     return (
         <Flex backgroundColor={'#5AC421'} pos='sticky' top='0' left='0' >
-            <Text fontSize='1xl' fontWeight='bold' margin='4' textColor='white'>HOME</Text>
+            <Text fontSize='1xl' fontWeight='bold' margin='4' textColor='white'>Accout</Text>
             <Spacer />
             <svg 
               xmlns='http://www.w3.org/2000/svg' 
@@ -20,7 +20,11 @@ export default function NavbarHome() {
               height='3em' 
               focusable='false' 
             >
-              <path d='M21 19a2 2 0 01-2 2h-3a2 2 0 01-2-2v-3c0-1.103-.897-2-2-2s-2 .897-2 2v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-7.586A2 2 0 013.586 10l7-7a2 2 0 012.828 0l7 7A2 2 0 0121 11.414V19zm-5 0h3v-7.586l-7-7-7 7V19h3v-3c0-2.206 1.794-4 4-4s4 1.794 4 4v3z'></path>
+              <g stroke='currentColor' strokeWidth='1.5'>
+              <path strokeLinecap='round' fill='none' d='M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25' />
+              <path fill='currentColor' strokeLinecap='round' d='M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0' />
+              <circle fill='none' strokeMiterlimit='10' cx='12' cy='12' r='11.25' />
+              </g>
             </svg>
         </Flex>
     )

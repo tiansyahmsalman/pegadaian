@@ -1,18 +1,22 @@
-import React from 'react';
+import React from 'react'
 import {
     Flex,
     Text,
     Grid
-  } from "@chakra-ui/react";
+  } from '@chakra-ui/react'
 import { InfoIcon } from '@chakra-ui/icons'
+import axios from 'axios'
+import serviceProducts from '../pages/services/getDataPoducts'
+import serviceCampaigns from '../pages/services/getCampaigns'
+import serviceCustomerServices from '../pages/services/getCustomerServices'
 
 export default function Historical(props) {
   const data = props.data
   const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
   const apiKey = process.env.API_KEY
-  const [products, setProducts] = React.useState([]);
-  const [campains, setCampains] = React.useState([]);
-  const [customerServices, setCustomerServices] = React.useState([]);
+  const [products, setProducts] = React.useState([])
+  const [campains, setCampains] = React.useState([])
+  const [customerServices, setCustomerServices] = React.useState([])
 
   React.useEffect(() => {
     if (data.id) {
@@ -21,75 +25,43 @@ export default function Historical(props) {
       fetchCustomerServices()
     }
     
-  },[data]);
-  
-  function handleErrors(res) {
-    if (!res) throw new Error(res.error);
-    return res;
+  },[data])
+
+  async function fetchDataPoducts () {
+    const product = await serviceProducts()
+    if (product.data) {
+      setProducts(product.data.nodes)
+    } else {}
   }
 
-  function fetchDataPoducts () {
-    fetch(`${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc`, {
-      method: "GET",
-      headers: {
-        'x-api-key': apiKey
-      },
-    })
-    .then((res) => res.json())
-    .then(handleErrors)
-    .then((data) => {
-      if (data.nodes) {
-        setProducts(data.nodes)
-      }
-    }) 
+  async function fetchCampaigns () {
+    const campaigns = await serviceCampaigns()
+    if (campaigns.data) {
+      setCampains(campaigns.data.nodes)
+    } else {}
   }
 
-  function fetchCampaigns () {
-    fetch(`${basicUrl}/campaignsWithAudienceFilter/rows?limit=50&offset=0&$order=asc`, {
-      method: "GET",
-      headers: {
-        'x-api-key': apiKey
-      },
-    })
-    .then((res) => res.json())
-    .then(handleErrors)
-    .then((data) => {
-      if (data.nodes) {
-        setCampains(data.nodes)
-      }
-    }) 
-  }
-
-  function fetchCustomerServices () {
-    fetch(`${basicUrl}/customerServicesWithAudiences/rows?limit=50&offset=0&$order=asc`, {
-      method: "GET",
-      headers: {
-        'x-api-key': apiKey
-      },
-    })
-    .then((res) => res.json())
-    .then(handleErrors)
-    .then((data) => {
-      if (data.nodes) {
-        setCustomerServices(data.nodes)
-      }
-    }) 
+  async function fetchCustomerServices () {
+    const customerServices = await serviceCustomerServices()
+    if (customerServices.data) {
+      setCustomerServices(customerServices.data.nodes)
+    } else {}
   }
 
   return (
     <>
-      <Flex backgroundColor='blue.50' borderRadius="5" marginBottom='3' >
+      <Flex backgroundColor='blue.50' borderRadius='5' marginBottom='3' >
           <InfoIcon boxSize='6' color='purple.900' margin='3' />
           <Text fontSize='1xl' fontWeight='bold' margin='3'>Products</Text>
       </Flex>
-      <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+      <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
         <strong>Product History</strong>
         {products.map((product, i)=>{
             let component
             { 
               i !== products.length-1 ? (
                 component = (
-                  <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+                  <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
                     <strong>{product.name}</strong>
                     <Text>{product.activity}</Text>
                   </Grid>
@@ -103,22 +75,22 @@ export default function Historical(props) {
                 )
               )
             }
-            return component
+            return <div key={i}>{component}</div>
           })
         }
       </Grid>
      
-      <Flex backgroundColor='blue.50' borderRadius="5">
+      <Flex backgroundColor='blue.50' borderRadius='5'>
           <InfoIcon boxSize='6' color='purple.900' margin='3' />
           <Text fontSize='1xl' fontWeight='bold' margin='3'>Campaigns</Text>
       </Flex>
-      <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+      <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
         {campains.map((campain, i)=>{
             let component
             { 
               i !== campains.length-1 ? (
                 component = (
-                  <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+                  <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
                     <strong>{campain.name}</strong>
                     <Text>{campain.description}</Text>
                     <Text>{campain.campaignDate}</Text>
@@ -133,12 +105,12 @@ export default function Historical(props) {
                 )
               )
             }
-            return component
+            return <div key={i}>{component}</div>
           })
         }
       </Grid>
       
-      <Flex backgroundColor='blue.50' borderRadius="5" marginBottom='3' >
+      <Flex backgroundColor='blue.50' borderRadius='5' marginBottom='3' >
           <InfoIcon boxSize='6' color='purple.900' margin='3' />
           <Text fontSize='1xl' fontWeight='bold' margin='3'>Customer Services</Text>
       </Flex>
@@ -148,7 +120,7 @@ export default function Historical(props) {
             { 
               i !== customerServices.length-1 ? (
                 component = (
-                  <Grid borderBottom="1px" borderColor="gray.200" paddingTop='3' paddingBottom='3'>
+                  <Grid borderBottom='1px' borderColor='gray.200' paddingTop='3' paddingBottom='3'>
                     <strong>{customerService.name}</strong>
                     <Text>{customerService.type}</Text>
                     <Text>{customerService.contactedAt}</Text>
@@ -164,7 +136,7 @@ export default function Historical(props) {
                 )
               )
             }
-            return component
+            return <div key={i}>{component}</div>
           })
         }
       </Grid>
