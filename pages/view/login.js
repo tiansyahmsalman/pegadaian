@@ -11,11 +11,9 @@ import {
   } from '@chakra-ui/react'
   import React from 'react'
   import { useRouter } from 'next/router'
-  import axios from 'axios'
+  import loginService from '../services/login'
   
   export default function Login() {
-    const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
-    const apiKey = process.env.API_KEY
     const [email, setEmail] = React.useState('')
     const [password , setPassword] = React.useState('')
     const router = useRouter()
@@ -30,24 +28,12 @@ import {
       login()
     }
 
-    function login () {
-      const url = `${basicUrl}/authenticate/password`
-      const headers = { 'x-api-key': apiKey }
-      const data = {
-        'identifier': email,
-        'password': password
-      }
-      axios.post(url, data, headers)
-      .then(({data}) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token)
-          router.push('/')
-        }
-        setEmail('')
-      })
-      .catch(error => {
-        console.log(error.message)
-      })  
+    async function login () {
+      let user = await loginService(email,password)
+      if (user.data) {
+        localStorage.setItem('token', user.data.token)
+        router.push('/')
+      } else {}
     }
   
     return (
@@ -71,11 +57,11 @@ import {
             <Stack spacing={4}>
               <FormControl id='email'>
                 <FormLabel>Email</FormLabel>
-                <Input type='email' onChange={e => setEmail(e.target.value)} />
+                <Input type='email' value={email} onChange={e => setEmail(e.target.value)} />
               </FormControl>
               <FormControl id='password'>
                 <FormLabel>Password</FormLabel>
-                <Input type='password' onChange={e => setPassword(e.target.value)} />
+                <Input type='password' value={password} onChange={e => setPassword(e.target.value)} />
               </FormControl>
               <Stack spacing={10}>
                 <Button

@@ -6,6 +6,9 @@ import {
   } from '@chakra-ui/react'
 import { InfoIcon } from '@chakra-ui/icons'
 import axios from 'axios'
+import serviceProducts from '../pages/services/getDataPoducts'
+import serviceCampaigns from '../pages/services/getCampaigns'
+import serviceCustomerServices from '../pages/services/getCustomerServices'
 
 export default function Historical(props) {
   const data = props.data
@@ -24,50 +27,25 @@ export default function Historical(props) {
     
   },[data])
 
-  function fetchDataPoducts () {
-    const url = `${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc`
-    const headers = { 'x-api-key': apiKey }
-    
-    axios.get(url, { headers })
-    .then(({data}) => {
-      if (data.nodes) {
-        setProducts(data.nodes)
-      }
-    }) 
-    .catch(error => {
-      console.log(error)
-    })
+  async function fetchDataPoducts () {
+    const product = await serviceProducts()
+    if (product.data) {
+      setProducts(product.data.nodes)
+    } else {}
   }
 
-  function fetchCampaigns () {
-    const url = `${basicUrl}/campaignsWithAudienceFilter/rows?limit=50&offset=0&$order=asc`
-    const headers = { 'x-api-key': apiKey }
-    
-    axios.get(url, { headers })
-    .then(({data}) => {
-      if (data.nodes) {
-        setCampains(data.nodes)
-      }
-    }) 
-    .catch(error => {
-      console.log(error)
-    })
+  async function fetchCampaigns () {
+    const campaigns = await serviceCampaigns()
+    if (campaigns.data) {
+      setCampains(campaigns.data.nodes)
+    } else {}
   }
 
-  function fetchCustomerServices () {
-    const url = `${basicUrl}/customerServicesWithAudiences/rows?limit=50&offset=0&$order=asc`
-    const headers = { 'x-api-key': apiKey }
-    
-    axios.get(url, { headers })
-    .then(({data}) => {
-      if (data.nodes) {
-        setCustomerServices(data.nodes)
-      }
-    }) 
-    .catch(error => {
-      console.log(error)
-    })
-    
+  async function fetchCustomerServices () {
+    const customerServices = await serviceCustomerServices()
+    if (customerServices.data) {
+      setCustomerServices(customerServices.data.nodes)
+    } else {}
   }
 
   return (

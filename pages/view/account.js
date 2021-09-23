@@ -15,15 +15,11 @@ import {
     const router = useRouter()
 
     React.useEffect( async ()=>{
-      try {
-        const user = await auth()
-        if (user.data) {
-          setUser(user.data.data)
-        } else {
-          console.log(user)
-        }
-      } catch (error) {
-        console.log(error.message)
+      const user = await auth()
+      if (user.data) {
+        setUser(user.data.data)
+      } else {
+        console.log(user)
       }
     },[])
 

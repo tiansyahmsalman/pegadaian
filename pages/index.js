@@ -8,48 +8,29 @@ import {
 } from '@chakra-ui/react'
 import Layout from '../components/layout'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 import auth from './services/auth'
+import serviceDataAudiences from './services/getAudiences'
 
 export default function Home() {
   const [data, setData] = React.useState([])
   const [info, setInfo] = React.useState('')
-  const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
-  const apiKey = process.env.API_KEY
   const router = useRouter()
 
   React.useEffect(async () => {
-    if(localStorage.getItem('token')){
-      let user
-      try {
-        user = await auth()
-        if (!user.data) {
-          router.push('/view/login')
-        } else {
-          fetchDataAudiences()
-        }
-      } catch (error) {
-        router.push('/view/login')
-      }
-    } else {
+    const user = await auth()
+    if (!user.data) {
       router.push('/view/login')
+    } else {
+      fetchDataAudiences()
     }
   },[])
 
-  function fetchDataAudiences () {
-    const url = `${basicUrl}/allAudiences/rows?limit=50&offset=0&$order=asc`
-    const headers = { 'x-api-key': apiKey }
-    
-    axios.get(url, { headers })
-    .then(({data}) => {
-      if (data.nodes) {
-        setInfo(`${data.nodes[0].dedicatedSales.displayField} (${data.nodes[0].city}) ,`)
-        setData(data.nodes) 
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    }) 
+  async function fetchDataAudiences () {
+    const audiences = await serviceDataAudiences()
+    if (audiences.data) {
+      setInfo(`${audiences.data.nodes[0].dedicatedSales.displayField} (${audiences.data.nodes[0].city}) ,`)
+      setData(audiences.data.nodes)
+    } else {}
   }
 
   return (

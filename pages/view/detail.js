@@ -16,12 +16,10 @@ import {
 import Profile from '../../components/profile'
 import Historical from '../../components/historical'
 import Layout from '../../components/layout'
-import axios from 'axios'
 import auth from '../services/auth'
+import serviceDataAudience from '../services/getAudience'
 
 export default function Detail(props) {
-  const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
-  const apiKey = process.env.API_KEY
   const [data, setData] = React.useState({})
   const query = useQuery()
   const router = useRouter()
@@ -31,20 +29,11 @@ export default function Detail(props) {
       return
     }
 
-    if(localStorage.getItem('token')){
-      let user
-      try {
-        user = await auth()
-        if (!user.data) {
-          router.push('/view/login')
-        } else {
-          fetchData(query.id)
-        }
-      } catch (error) {
-        router.push('/view/login')
-      }
-    } else {
+    const user = await auth()
+    if (!user.data) {
       router.push('/view/login')
+    } else {
+      fetchData(query.id)
     }
   },[])
 
@@ -57,19 +46,11 @@ export default function Detail(props) {
     return router.query
   }
 
-  function fetchData (id) {
-    const url = `${basicUrl}/allAudiences/rows/${id}`
-    const headers = { 'x-api-key': apiKey }
-    
-    axios.get(url, { headers })
-    .then(({data}) => {
-      if (data) {
-        setData(data) 
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    }) 
+  async function fetchData (id) {
+    const audience = await serviceDataAudience(id)
+    if (audience.data) {
+      setData(audience.data) 
+    } else {}
   }
 
   return (

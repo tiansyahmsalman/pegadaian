@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-export default async function auth () {
+export default async function getAudience (id) {
   const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID
   const Bearer = `Bearer ${localStorage.getItem('token')}`
-  const url = `${basicUrl}/me`
+  const url = `${basicUrl}/allAudiences/rows/${id}`
   const headers = { 'authorization': Bearer }
   
   try {
