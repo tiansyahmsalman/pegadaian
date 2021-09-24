@@ -9,9 +9,11 @@ import {
 import Layout from '../components/layout'
 import { useRouter } from 'next/router'
 import { useNavbarContext } from '../components/navbarContext'
+import Skeleton from '../components/skeletonList'
+
 
 export default function Home() {
-  const [data, setData] = React.useState([])
+  const [data, setData] = React.useState(undefined)
   const [info, setInfo] = React.useState('')
   const router = useRouter()
   const navbarContext = useNavbarContext()
@@ -31,6 +33,14 @@ export default function Home() {
       setInfo(`${audiences.data.nodes[0].dedicatedSales.displayField} (${audiences.data.nodes[0].city}) ,`)
       setData(audiences.data.nodes)
     } else {}
+  }
+
+  if (!data) {
+    return (
+      <Layout title='home' className={styles.main}>
+        <Skeleton />
+      </Layout>
+    )
   }
 
   return (
