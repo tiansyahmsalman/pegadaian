@@ -15,7 +15,7 @@ export default function Layout(props) {
       </Head>
       <Flex w="full" h="full">
         <SideNavbar display={{ base: "none", md: "block" }} />
-        <Box w="full" pl={{ base: "0.5", md: "64" }}>
+        <Box w="full" pl={{ base: "0.5", md: "64" }} pb={{base:'50', md:'0,5'}}>
           {props.title === "home" ? <NavbarHome /> : <></>}
           {props.title === "detail" ? (
             <NavbarDetail name={props.name} />
@@ -24,8 +24,8 @@ export default function Layout(props) {
           )}
           {props.title === "account" ? <NavbarAccount /> : <></>}
           <main>{props.children}</main>
-          <Footer display={{ base: "inline-flex", md: "none" }} pos="fixed" />
         </Box>
+        <Footer display={{ base: "inline-flex", md: "none" }} pos='fixed' />
       </Flex>
     </>
   );
