@@ -74,7 +74,7 @@ export default function Detail() {
               boxSize='900px'
               height='450px'
             />
-            <Grid backgroundColor='Highlight' padding='2'>
+            <Grid as='div' backgroundColor='whiteAlpha.700' pos='relative' mt='-59' py='2'>
               <Container marginLeft='0'>
                 <strong>{data.name}</strong>
                 <Text>Kota : {data.city}</Text>
