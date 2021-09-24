@@ -8,6 +8,7 @@ import {
     Button,
     Heading,
     Text,
+    Center
   } from '@chakra-ui/react'
   import React from 'react'
   import { useRouter } from 'next/router'
@@ -16,6 +17,7 @@ import {
   export default function Login() {
     const [email, setEmail] = React.useState('')
     const [password , setPassword] = React.useState('')
+    const [error, setError] = React.useState('')
     const router = useRouter()
     const navbarContext = useNavbarContext()
 
@@ -34,7 +36,14 @@ import {
       if (user.data) {
         localStorage.setItem('token', user.data.token)
         router.push('/')
-      } else {}
+      } else {
+        console.log(user);
+        if (user === 'Request failed with status code 400' || user === 'Request failed with status code 401'){
+          setError('Invalid Email or Password')
+        } else {
+          setError('Something went wrong please try again')
+        }
+      }
     }
   
     return (
@@ -56,6 +65,11 @@ import {
             boxShadow={'lg'}
             p={8}>
             <Stack spacing={4}>
+              <FormControl id='email'>
+                <Center color='red'>
+                  {error}
+                </Center>
+              </FormControl>
               <FormControl id='email'>
                 <FormLabel>Email</FormLabel>
                 <Input type='email' value={email} onChange={e => setEmail(e.target.value)} />

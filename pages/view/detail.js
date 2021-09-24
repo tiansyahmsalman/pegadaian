@@ -17,8 +17,9 @@ import Profile from '../../components/profile'
 import Historical from '../../components/historical'
 import Layout from '../../components/layout'
 import { useNavbarContext} from '../../components/navbarContext'
+import Skeleton from '../../components/skeletonDetail'
 
-export default function Detail(props) {
+export default function Detail() {
   const [data, setData] = React.useState({})
   const query = useQuery()
   const router = useRouter()
@@ -35,7 +36,7 @@ export default function Detail(props) {
     } else {
       fetchData(query.id)
     }
-  },[])
+  },[query])
 
   function useQuery() {
     const router = useRouter()
@@ -51,6 +52,14 @@ export default function Detail(props) {
     if (audience.data) {
       setData(audience.data) 
     } else {}
+  }
+
+  if (!data.name) {
+    return (
+      <Layout title='home' className={styles.main}>
+        <Skeleton />
+      </Layout>
+    )
   }
 
   return (

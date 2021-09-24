@@ -4,9 +4,10 @@ import React from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/style.module.css";
 import { useNavbarContext } from '../../components/navbarContext'
+import Skeleton from '../../components/skeletonProfile'
 
 export default function Account() {
-  const [user, setUser] = React.useState([]);
+  const [user, setUser] = React.useState(undefined);
   const router = useRouter();
   const navbarContext = useNavbarContext()
 
@@ -22,6 +23,14 @@ export default function Account() {
   function handleClick() {
     localStorage.removeItem("token");
     router.push("/view/login");
+  }
+
+  if (!user) {
+    return (
+      <Layout title='home' className={styles.main}>
+        <Skeleton />
+      </Layout>
+    )
   }
 
   return (
