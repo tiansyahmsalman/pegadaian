@@ -4,18 +4,21 @@ import axios from "axios";
 const NavbarContext = React.createContext({
   updateActiveNavbar: () => {},
   activeNavbar: "",
-  auth: () => {},
+  user: "",
   getAudience: (id) => {},
   getAudiences: () => {},
   getCampaigns: () => {},
   getCustomerServices: () => {},
   getProducts: () => {},
   login: (email, password) => {},
+  auth: () => {}
 });
 
 function useNavbar() {
   const [state, setState] = React.useState({
     activeNavbar: "Home",
+    user: "",
+    audiences: []
   });
 
   const updateActiveNavbar = (prop) => {
@@ -30,19 +33,21 @@ function useNavbar() {
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/me`;
     const headers = { authorization: Bearer };
-
     try {
       const data = await axios.get(url, { headers });
+      setState((prev)=> ({
+        ...prev, user: data.data
+      }))
       return data;
     } catch (error) {
-      return error.message;
+      return error.message
     }
   };
 
   const getAudience = async (id) => {
     const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
-    const url = `${basicUrl}/allAudiences/rows/${id}`;
+    const url = `${basicUrl}/allDailyAudienceAllocation/rows/${id}`;
     const headers = { authorization: Bearer };
 
     try {
@@ -56,7 +61,7 @@ function useNavbar() {
   const getAudiences = async () => {
     const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
-    const url = `${basicUrl}/allAudiences/rows?limit=50&offset=0&$order=asc`;
+    const url = `${basicUrl}/allDailyAudienceAllocation/rows?limit=50&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
 
     try {
@@ -125,16 +130,21 @@ function useNavbar() {
     }
   };
 
+  React.useEffect(async () => {
+    await auth();
+  },[])
+
   return {
     updateActiveNavbar,
     activeNavbar: state.activeNavbar,
-    auth,
+    user: state.user,
     getAudience,
     getAudiences,
     getCampaigns,
     getCustomerServices,
     getProducts,
-    login
+    login,
+    auth
   };
 }
 

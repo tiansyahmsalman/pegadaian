@@ -14,10 +14,10 @@ import Skeleton from '../components/skeletonList'
 
 export default function Home() {
   const [data, setData] = React.useState(undefined)
-  const [info, setInfo] = React.useState('')
+  // const [info, setInfo] = React.useState('')
   const router = useRouter()
   const navbarContext = useNavbarContext()
-
+  const info = navbarContext.user
   React.useEffect(async () => {
     const user = await navbarContext.auth()
     if (!user.data) {
@@ -30,7 +30,7 @@ export default function Home() {
   async function fetchDataAudiences () {
     const audiences = await navbarContext.getAudiences()
     if (audiences.data) {
-      setInfo(`${audiences.data.nodes[0].dedicatedSales.displayField} (${audiences.data.nodes[0].city}) ,`)
+      // setInfo(`${audiences.data.nodes[0].dedicatedSales.displayField} (${audiences.data.nodes[0].city}) ,`)
       setData(audiences.data.nodes)
     } else {}
   }
@@ -50,7 +50,7 @@ export default function Home() {
           <Grid>
             {info ? (
               <Grid m='3'>
-                <Text>Halo {info}</Text>
+                <Text>Halo {info.data.userNamaLengkap}</Text>
                 <strong>Ini Target Customer untuk hari ini</strong>
               </Grid>
             ):<div />}

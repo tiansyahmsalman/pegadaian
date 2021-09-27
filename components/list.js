@@ -12,7 +12,7 @@ export default function List(props) {
   return (
     <Link href={{ pathname: '/view/detail', query: { id: data.id } }}>
       <Flex borderBottom='1px' borderColor='gray.200' padding='3'>
-        <Center>
+        {/* <Center>
           <Image
             borderRadius='5'
             src={data.picture}
@@ -20,12 +20,12 @@ export default function List(props) {
             fit='cover'
             boxSize='64px'
           />
-        </Center>
+        </Center> */}
         
         <Container maxWidth='750' p='0' ml='3'>
-          <strong>{data.name}</strong>
-          <Text>{data.address}</Text>
-          <Text>{data.city}</Text>
+          <strong>{data.encNama}</strong>
+          <Text>{data.encAlamat}</Text>
+          <Text>{data.kabupatenKota}</Text>
         </Container>
       </Flex>
     </Link>

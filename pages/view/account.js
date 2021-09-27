@@ -3,22 +3,13 @@ import Layout from "../../components/layout";
 import React from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/style.module.css";
-import { useNavbarContext } from '../../components/navbarContext'
-import Skeleton from '../../components/skeletonProfile'
+import { useNavbarContext } from "../../components/navbarContext";
+import Skeleton from "../../components/skeletonProfile";
 
 export default function Account() {
-  const [user, setUser] = React.useState(undefined);
   const router = useRouter();
-  const navbarContext = useNavbarContext()
-
-  React.useEffect(async () => {
-    const user = await navbarContext.auth()
-    if (user.data) {
-      setUser(user.data.data);
-    } else {
-      console.log(user);
-    }
-  }, []);
+  const navbarContext = useNavbarContext();
+  const user = navbarContext.user;
 
   function handleClick() {
     localStorage.removeItem("token");
@@ -27,20 +18,20 @@ export default function Account() {
 
   if (!user) {
     return (
-      <Layout title='home' className={styles.main}>
+      <Layout title="home" className={styles.main}>
         <Skeleton />
       </Layout>
-    )
+    );
   }
 
   return (
-    <Layout title='account' className={styles.main}>
+    <Layout title="account" className={styles.main}>
       <Container maxWidth="850px">
         <Stack spacing="5" fontSize="1xl">
           <Container />
           <Container>
             <strong>Name</strong>
-            <Text>{user.name}</Text>
+            <Text>{user.data.userNamaLengkap}</Text>
           </Container>
           <Container>
             <strong>Email</strong>
@@ -48,7 +39,7 @@ export default function Account() {
           </Container>
           <Container>
             <strong>Lokasi</strong>
-            <Text>{user.location}</Text>
+            <Text>{user.data.areaNm}</Text>
           </Container>
           <Stack p="4">
             <Button
