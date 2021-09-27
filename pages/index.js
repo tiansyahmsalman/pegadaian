@@ -47,7 +47,7 @@ export default function Home() {
     <div>
       <Layout title='home' className={styles.main}>
         {/* <Center> */}
-          <Grid m='5'>
+          <Grid m={{base:'0', md:'5'}}>
             {info ? (
               <Grid m='3'>
                 <Text>Halo {info.data.userNamaLengkap}</Text>
