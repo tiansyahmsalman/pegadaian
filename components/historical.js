@@ -75,7 +75,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Campaign accepted</strong>
-        <Text>{data.CampignStatus}</Text>
+        <Text>{"not yet <<<<<<<<<<"}</Text>
       </Grid>
     </>
   );
