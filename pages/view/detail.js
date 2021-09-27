@@ -81,7 +81,7 @@ export default function Detail() {
               height='450px'
             /> */}
             <Grid as="div" backgroundColor="whiteAlpha.700" py="2">
-              <Container marginLeft="0">
+              <Container marginLeft="0" fontSize='2xl' mt='5'>
                 <strong>{data.encNama}</strong>
                 <Text>Kota : {data.kabupatenKota}</Text>
               </Container>
@@ -94,7 +94,7 @@ export default function Detail() {
                   fontWeight="bold"
                   marginLeft="4"
                 >
-                  Detail
+                  Profile
                 </Tab>
                 <Tab
                   _selected={{ color: "white", bg: "#5AC421" }}
@@ -102,7 +102,7 @@ export default function Detail() {
                   fontWeight="bold"
                   marginRight="4"
                 >
-                  Historical
+                  Trend
                 </Tab>
               </TabList>
               <TabPanels>

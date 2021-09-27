@@ -46,8 +46,8 @@ export default function Home() {
   return (
     <div>
       <Layout title='home' className={styles.main}>
-        <Center>
-          <Grid>
+        {/* <Center> */}
+          <Grid m='5'>
             {info ? (
               <Grid m='3'>
                 <Text>Halo {info.data.userNamaLengkap}</Text>
@@ -58,7 +58,7 @@ export default function Home() {
               return <List key={dt.id} data={dt} />
             })}
           </Grid>
-        </Center>
+        {/* </Center> */}
       </Layout>
     </div>
   )

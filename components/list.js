@@ -22,7 +22,7 @@ export default function List(props) {
           />
         </Center> */}
         
-        <Container maxWidth='750' p='0' ml='3'>
+        <Container maxWidth='850' p='0' ml='3'>
           <strong>{data.encNama}</strong>
           <Text>{data.encAlamat}</Text>
           <Text>{data.kabupatenKota}</Text>
