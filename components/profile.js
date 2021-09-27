@@ -81,7 +81,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Churn Probability</strong>
-        <Text>{"not yet <<<<<<<<<"}</Text>
+        <Text>{"-"}</Text>
       </Grid>
       <Grid
         borderBottom="1px"
@@ -90,7 +90,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>CLTV</strong>
-        <Text>{"not yet <<<<<<<<<"}</Text>
+        <Text>{"-"}</Text>
       </Grid>
       <Grid
         borderBottom="1px"
