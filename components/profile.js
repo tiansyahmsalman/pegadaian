@@ -194,11 +194,21 @@ export default function Profile(props) {
           Contact Detail
         </Text>
       </Flex>
-      <Grid paddingTop="3" paddingBottom="3">
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
         <strong>No Handphone</strong>
         <Text>{data.encNoHandphone}</Text>
       </Grid>
-      <Grid paddingTop="3" paddingBottom="3">
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
         <strong>Last Contacted</strong>
         <Text>{data.encLastContacted}</Text>
       </Grid>
