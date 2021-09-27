@@ -5,8 +5,7 @@ import { useNavbarContext } from "./navbarContext";
 
 export default function Historical(props) {
   const data = props.data;
-  const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
-  const apiKey = process.env.API_KEY;
+  let value
 
   return (
     <>
@@ -23,7 +22,10 @@ export default function Historical(props) {
         paddingBottom="0"
       >
         <strong>Age</strong>
-        <Text>{data.encUsia}</Text>
+        {
+          value = data.encUsia,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid 
         borderBottom="1px"
@@ -32,7 +34,10 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Marital Status</strong>
-        <Text>{data.encStatusPernikahan}</Text>
+        {
+          value = data.encStatusPernikahan,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -42,16 +47,22 @@ export default function Historical(props) {
       </Flex>
       <Grid>
         <strong>Product / Trx history</strong>
-        {data.listHistoryProducts.split("/").map((product) => (
-          <Grid
-            borderBottom="1px"
-            borderColor="gray.200"
-            paddingTop="3"
-            paddingBottom="3"
-          >
-            <Text>{product}</Text>
-          </Grid>
-        ))}
+        {
+          value = data.listHistoryProducts,
+          !value || value.includes('not ') || value.includes('Not ') ? (
+          <Text>{'-'}</Text>):(
+            data.listHistoryProducts.split("/").map((product) => (
+              <Grid
+                borderBottom="1px"
+                borderColor="gray.200"
+                paddingTop="3"
+                paddingBottom="3"
+              >
+                <Text>{product}</Text>
+              </Grid>
+            ))
+          )
+        }
       </Grid>
       <Grid 
         borderBottom="1px"
@@ -60,7 +71,10 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Acount status / Tier</strong>
-        <Text>{data.encStatusNasabah}</Text>
+        {
+          value = data.encStatusNasabah,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -75,7 +89,10 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Campaign accepted</strong>
-        <Text>{"-"}</Text>
+        {
+          value = data.campaignStatus,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
     </>
   );

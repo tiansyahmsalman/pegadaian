@@ -3,6 +3,7 @@ import { InfoIcon } from "@chakra-ui/icons";
 
 export default function Profile(props) {
   const data = props.data;
+  let value
   return (
     <>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
@@ -18,7 +19,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>NIK</strong>
-        <Text>{data.encNik}</Text>
+        {
+          value = data.encNik,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid
         borderBottom="1px"
@@ -27,7 +31,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Name</strong>
-        <Text>{data.encNama}</Text>
+        {
+          value = data.encNama,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid
         borderBottom="1px"
@@ -36,7 +43,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>City</strong>
-        <Text>{data.kabupatenKota}</Text>
+        {
+          value = data.kabupatenKota,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid
         borderBottom="1px"
@@ -45,7 +55,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Gender</strong>
-        <Text>{data.encGender}</Text>
+        {
+          value = data.encGender,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid
         borderBottom="1px"
@@ -54,7 +67,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Family Status</strong>
-        <Text>{data.encStatusPernikahan}</Text>
+        {
+          value = data.encStatusPernikahan,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid
         borderBottom="1px"
@@ -63,7 +79,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Occupation</strong>
-        <Text>{data.encPekerjaan}</Text>
+        {
+          value = data.encPekerjaan,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid
         borderBottom="1px"
@@ -72,7 +91,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Income Range</strong>
-        <Text>{data.encRangeGaji}</Text>
+        {
+          value = data.encRangeGaji,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid
         borderBottom="1px"
@@ -81,7 +103,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Churn Probability</strong>
-        <Text>{"-"}</Text>
+        {
+          value = data.chrunPred,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid
         borderBottom="1px"
@@ -90,7 +115,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>CLTV</strong>
-        <Text>{"-"}</Text>
+        {
+          value = data.labelClvInvestasi,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid
         borderBottom="1px"
@@ -99,14 +127,20 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Credit Obj</strong>
-          {data.creditObj.split("/").map((obj, i) => (
-            <Grid
-              paddingTop="1"
-              paddingBottom="1"
-            >
-              <Text>{obj}</Text>
-            </Grid>
-          ))}
+          {
+            value = data.creditObj,
+            !value || value.includes('not ') || value.includes('Not ') ? 
+            (<Text>{'-'}</Text>):(
+              data.creditObj.split("/").map((obj, i) => (
+                <Grid
+                  paddingTop="1"
+                  paddingBottom="1"
+                >
+                  <Text>{obj}</Text>
+                </Grid>
+              ))
+            )
+          }
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -121,7 +155,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>No Handphone</strong>
-        <Text>{data.encNoHandphone}</Text>
+        {
+          value = data.encNoHandphone,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       <Grid 
         borderBottom="1px"
@@ -130,7 +167,10 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Last Contacted</strong>
-        <Text>{data.encLastContacted}</Text>
+        {
+          value = data.encLastContacted,
+          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
+        }
       </Grid>
       {/* <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
