@@ -7,44 +7,42 @@ export default function Historical(props) {
   const data = props.data;
   const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
   const apiKey = process.env.API_KEY;
-  // const [products, setProducts] = React.useState([]);
-  // const [campains, setCampains] = React.useState([]);
-  // const [customerServices, setCustomerServices] = React.useState([]);
-  // const navbarContext = useNavbarContext();
 
   return (
     <>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          General
+          Lifestyle and Life Stage
         </Text>
       </Flex>
-
-      <Grid >
-          <strong>Credit Obj</strong>
-          {data.creditObj.split("/").map((obj, i) => (
-            <Grid
-              borderBottom="1px"
-              borderColor="gray.200"
-              paddingTop="3"
-              paddingBottom="3"
-            >
-              <Text>{obj}</Text>
-            </Grid>
-          ))}
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="0"
+        paddingBottom="0"
+      >
+        <strong>Age</strong>
+        <Text>{data.encUsia}</Text>
       </Grid>
-
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Marital Status</strong>
+        <Text>{data.encStatusPernikahan}</Text>
+      </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          History
+          Product
         </Text>
       </Flex>
-
       <Grid>
-        <strong>List History Product</strong>
-        {data.listActiveProducts.split("/").map((product) => (
+        <strong>Product / Trx history</strong>
+        {data.listHistoryProducts.split("/").map((product) => (
           <Grid
             borderBottom="1px"
             borderColor="gray.200"
@@ -55,47 +53,29 @@ export default function Historical(props) {
           </Grid>
         ))}
       </Grid>
-
-      <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
-        <InfoIcon boxSize="6" color="purple.900" margin="3" />
-        <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Active
-        </Text>
-      </Flex>
-
-      <Grid>
-        <strong>List Active Product</strong>
-        {data.listActiveProducts.split("/").map((product) => (
-          <Grid
-            borderBottom="1px"
-            borderColor="gray.200"
-            paddingTop="3"
-            paddingBottom="3"
-          >
-            <Text>{product}</Text>
-          </Grid>
-        ))}
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Acount status / Tier</strong>
+        <Text>{data.encStatusNasabah}</Text>
       </Grid>
-
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Recomendation
+          Lifestyle and Life Stage
         </Text>
       </Flex>
-      
-      <Grid>
-        <strong>List Product Recomendation</strong>
-        {data.listProductRecommendation.split("/").map((product) => (
-          <Grid
-            borderBottom="1px"
-            borderColor="gray.200"
-            paddingTop="3"
-            paddingBottom="3"
-          >
-            <Text>{product}</Text>
-          </Grid>
-        ))}
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Campaign accepted</strong>
+        <Text>{data.CampignStatus}</Text>
       </Grid>
     </>
   );
