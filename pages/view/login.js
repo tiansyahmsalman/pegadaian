@@ -37,7 +37,6 @@ import {
         localStorage.setItem('token', user.data.token)
         router.push('/')
       } else {
-        console.log(user);
         if (user === 'Request failed with status code 400' || user === 'Request failed with status code 401'){
           setError('Invalid Email or Password')
         } else {

@@ -3,8 +3,8 @@ module.exports = {
 }
 module.exports = {
   env: {
-    QORE_ENDPOINT: 'https://prod-qore-app.qorebase.io/',
-    PROJECT_ID: 'vTS3B25NhFzZURO',
-    API_KEY: 'cd4e1ee0-e3fa-4973-b773-e2aee6dcc043'
+    QORE_ENDPOINT: 'https://pegadaian-qore-backend.digitallab.id/',
+    PROJECT_ID: '9EptKtNNMqwZ5G8',
+    API_KEY: '568e92d8-4ce4-441a-a694-1689e3a24e4a'
   },
 }
