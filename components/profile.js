@@ -132,12 +132,12 @@ export default function Profile(props) {
         <strong>Last Contacted</strong>
         <Text>{data.encLastContacted}</Text>
       </Grid>
-      <Flex backgroundColor="blue.50" borderRadius="5">
+      {/* <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
           Customer Service
         </Text>
-      </Flex>      
+      </Flex>       */}
     </>
   );
 }
