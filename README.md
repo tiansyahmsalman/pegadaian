@@ -5,6 +5,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+# create .env.local
+NEXT_PUBLIC_PROJECT_ID=9EptKtNNMqwZ5G8
+NEXT_PUBLIC_QORE_ENDPOINT=https://pegadaian-qore-backend.digitallab.id/
+
 npm run dev
 # or
 yarn dev
