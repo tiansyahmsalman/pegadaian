@@ -9,6 +9,7 @@ export default function setPropertieList(payload) {
           <Grid
             paddingTop="1"
             paddingBottom="1"
+            key={i}
           >
             <Text>{obj}</Text>
           </Grid>

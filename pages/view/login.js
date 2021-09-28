@@ -21,8 +21,9 @@ import {
     const router = useRouter()
     const navbarContext = useNavbarContext()
 
-    React.useEffect(() => {
-      if(localStorage.getItem('token')){
+    React.useEffect( async () => {
+      const user = await navbarContext.auth();
+      if (user.data) {
         router.push('/')
       }
     },[])
