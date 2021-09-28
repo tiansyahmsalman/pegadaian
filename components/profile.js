@@ -5,7 +5,6 @@ import setPropertieList from '../helper/setPropertieList'
 
 export default function Profile(props) {
   const data = props.data;
-  let value
   return (
     <>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
@@ -84,7 +83,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Churn Probability</strong>
-        {setPropertieString(data.chrunPred)}
+        {setPropertieString(data.churnPred)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -127,7 +126,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Last Contacted</strong>
-        {setPropertieString(data.encLastContacted)}
+        {setPropertieString(new Date(data.encLastContacted).toISOString().split('T')[0])}
       </Grid>
       {/* <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
