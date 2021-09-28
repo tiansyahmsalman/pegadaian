@@ -1,5 +1,7 @@
 import { Flex, Text, Grid } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
+import setPropertieString from '../helper/setPropertieString'
+import setPropertieList from '../helper/setPropertieList'
 
 export default function Profile(props) {
   const data = props.data;
@@ -19,10 +21,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>NIK</strong>
-        {
-          value = data.encNik,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.encNik)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -31,10 +30,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Name</strong>
-        {
-          value = data.encNama,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.encNama)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -43,10 +39,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>City</strong>
-        {
-          value = data.kabupatenKota,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.kabupatenKota)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -55,10 +48,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Gender</strong>
-        {
-          value = data.encGender,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.encGender)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -67,10 +57,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Family Status</strong>
-        {
-          value = data.encStatusPernikahan,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.encStatusPernikahan)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -79,10 +66,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Occupation</strong>
-        {
-          value = data.encPekerjaan,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.encPekerjaan)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -91,10 +75,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Income Range</strong>
-        {
-          value = data.encRangeGaji,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.encRangeGaji)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -103,10 +84,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Churn Probability</strong>
-        {
-          value = data.chrunPred,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.chrunPred)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -115,10 +93,8 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>CLTV</strong>
-        {
-          value = data.labelClvInvestasi,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.labelClvInvestasi)}
+        
       </Grid>
       <Grid
         borderBottom="1px"
@@ -127,20 +103,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Credit Obj</strong>
-          {
-            value = data.creditObj,
-            !value || value.includes('not ') || value.includes('Not ') ? 
-            (<Text>{'-'}</Text>):(
-              data.creditObj.split("/").map((obj, i) => (
-                <Grid
-                  paddingTop="1"
-                  paddingBottom="1"
-                >
-                  <Text>{obj}</Text>
-                </Grid>
-              ))
-            )
-          }
+        {setPropertieList(data.creditObj)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -155,10 +118,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>No Handphone</strong>
-        {
-          value = data.encNoHandphone,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.encNoHandphone)}
       </Grid>
       <Grid 
         borderBottom="1px"
@@ -167,10 +127,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Last Contacted</strong>
-        {
-          value = data.encLastContacted,
-          !value || value.includes('not ') || value.includes('Not ') ? (<Text>{'-'}</Text>):(<Text>{value}</Text>)
-        }
+        {setPropertieString(data.encLastContacted)}
       </Grid>
       {/* <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
