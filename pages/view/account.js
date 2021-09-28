@@ -12,6 +12,7 @@ export default function Account() {
   const user = navbarContext.user;
 
   function handleClick() {
+    navbarContext.updateActiveNavbar("Home");
     localStorage.removeItem("token");
     router.push("/view/login");
   }
