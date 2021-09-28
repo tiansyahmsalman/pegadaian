@@ -92,16 +92,6 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>CLTV</strong>
-        {setPropertieString(data.labelClvInvestasi)}
-        
-      </Grid>
-      <Grid
-        borderBottom="1px"
-        borderColor="gray.200"
-        paddingTop="3"
-        paddingBottom="3"
-      >
         <strong>Credit Obj</strong>
         {setPropertieList(data.creditObj)}
       </Grid>
