@@ -94,7 +94,7 @@ export default function Detail() {
                   fontWeight="bold"
                   marginLeft="4"
                 >
-                  Profile
+                  Detail
                 </Tab>
                 <Tab
                   _selected={{ color: "white", bg: "#5AC421" }}
@@ -102,7 +102,7 @@ export default function Detail() {
                   fontWeight="bold"
                   marginRight="4"
                 >
-                  Trend
+                  Historical
                 </Tab>
               </TabList>
               <TabPanels>
