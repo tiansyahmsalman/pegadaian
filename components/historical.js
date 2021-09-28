@@ -6,7 +6,6 @@ import setPropertieList from '../helper/setPropertieList'
 
 export default function Historical(props) {
   const data = props.data;
-  let value
 
   return (
     <>
@@ -46,7 +45,7 @@ export default function Historical(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Product / Trx history</strong>
+        <strong>Closed Product</strong>
         {setPropertieList(data.listHistoryProducts)}
       </Grid>
       <Grid 
@@ -55,8 +54,56 @@ export default function Historical(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Acount status / Tier</strong>
-        {setPropertieString(data.encStatusNasabah)}
+        <strong>Ongoing Product</strong>
+        {setPropertieList(data.listActiveProducts)}
+      </Grid>
+      <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
+        <InfoIcon boxSize="6" color="purple.900" margin="3" />
+        <Text fontSize="1xl" fontWeight="bold" margin="3">
+          Upsell & Cross Sell
+        </Text>
+      </Flex>
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>List Product Recommendation</strong>
+        {setPropertieList(data.listProductRecomendation)}
+      </Grid>
+      <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
+        <InfoIcon boxSize="6" color="purple.900" margin="3" />
+        <Text fontSize="1xl" fontWeight="bold" margin="3">
+          Transaction Segmentation
+        </Text>
+      </Flex>
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Segment non Angsuran</strong>
+        {setPropertieString(data.segmentInNonAngsuran)}
+      </Grid>
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Segment Angsuran</strong>
+        {setPropertieString(data.segmentInAngsuran)}
+      </Grid>
+      <Grid 
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Segment Investasi</strong>
+        {setPropertieString(data.segmentInInvestasi)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -214,14 +261,3 @@ export default function Historical(props) {
     </>
   );
 }
-
-
-// Other Information (Category)
-// Outlet: outlet
-// Outlet Code: kode_outlet
-// Branch: cabang
-// Branch Code: kode_cabang
-// Regional Office: kanwil
-// Province: nama_provinsi
-// Customer Status: status_nasabah
-// Rating: rating
