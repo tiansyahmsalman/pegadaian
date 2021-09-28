@@ -40,7 +40,12 @@ export default function Historical(props) {
           Product
         </Text>
       </Flex>
-      <Grid>
+      <Grid
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
         <strong>Product / Trx history</strong>
         {setPropertieList(data.listHistoryProducts)}
       </Grid>
@@ -68,6 +73,12 @@ export default function Historical(props) {
         <strong>Campaign accepted</strong>
         {setPropertieString(data.campaignStatus)}
       </Grid>
+      <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
+        <InfoIcon boxSize="6" color="purple.900" margin="3" />
+        <Text fontSize="1xl" fontWeight="bold" margin="3">
+          Other Information
+        </Text>
+      </Flex>
     </>
   );
 }
