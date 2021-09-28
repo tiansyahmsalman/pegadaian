@@ -29,7 +29,7 @@ function useNavbar() {
   };
 
   const auth = async () => {
-    const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
+    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/me`;
     const headers = { authorization: Bearer };
@@ -45,7 +45,7 @@ function useNavbar() {
   };
 
   const getAudience = async (id) => {
-    const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
+    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/allDailyAudienceAllocation/rows/${id}`;
     const headers = { authorization: Bearer };
@@ -59,7 +59,7 @@ function useNavbar() {
   };
 
   const getAudiences = async () => {
-    const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
+    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/allDailyAudienceAllocation/rows?limit=50&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
@@ -73,7 +73,7 @@ function useNavbar() {
   };
 
   const getCampaigns = async () => {
-    const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
+    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/campaignsWithAudienceFilter/rows?limit=50&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
@@ -87,7 +87,7 @@ function useNavbar() {
   };
 
   const getCustomerServices = async () => {
-    const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
+    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/customerServicesWithAudiences/rows?limit=50&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
@@ -101,7 +101,7 @@ function useNavbar() {
   };
 
   const getProducts = async () => {
-    const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
+    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
@@ -115,7 +115,7 @@ function useNavbar() {
   };
 
   const login = async (email, password) => {
-    const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
+    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
     const url = `${basicUrl}/authenticate/password`;
     const body = {
       identifier: email,
