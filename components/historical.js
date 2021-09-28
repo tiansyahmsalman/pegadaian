@@ -61,7 +61,7 @@ export default function Historical(props) {
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Lifestyle and Life Stage
+          Campaign
         </Text>
       </Flex>
       <Grid 
