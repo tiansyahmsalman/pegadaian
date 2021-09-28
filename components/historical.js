@@ -1,12 +1,12 @@
 import React from "react";
 import { Flex, Text, Grid } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
-import { useNavbarContext } from "./navbarContext";
+import setPropertieString from '../helper/setPropertieString'
+import setPropertieList from '../helper/setPropertieList'
 
 export default function Historical(props) {
   const data = props.data;
-  const basicUrl = process.env.QORE_ENDPOINT + process.env.PROJECT_ID;
-  const apiKey = process.env.API_KEY;
+  let value
 
   return (
     <>
@@ -23,7 +23,7 @@ export default function Historical(props) {
         paddingBottom="0"
       >
         <strong>Age</strong>
-        <Text>{data.encUsia}</Text>
+        {setPropertieString(data.encUsia)}
       </Grid>
       <Grid 
         borderBottom="1px"
@@ -32,7 +32,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Marital Status</strong>
-        <Text>{data.encStatusPernikahan}</Text>
+        {setPropertieString(data.encStatusPernikahan)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -42,16 +42,7 @@ export default function Historical(props) {
       </Flex>
       <Grid>
         <strong>Product / Trx history</strong>
-        {data.listHistoryProducts.split("/").map((product) => (
-          <Grid
-            borderBottom="1px"
-            borderColor="gray.200"
-            paddingTop="3"
-            paddingBottom="3"
-          >
-            <Text>{product}</Text>
-          </Grid>
-        ))}
+        {setPropertieList(data.listHistoryProducts)}
       </Grid>
       <Grid 
         borderBottom="1px"
@@ -60,7 +51,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Acount status / Tier</strong>
-        <Text>{data.encStatusNasabah}</Text>
+        {setPropertieString(data.encStatusNasabah)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -75,7 +66,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Campaign accepted</strong>
-        <Text>{"-"}</Text>
+        {setPropertieString(data.campaignStatus)}
       </Grid>
     </>
   );

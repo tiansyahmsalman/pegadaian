@@ -1,8 +1,11 @@
 import { Flex, Text, Grid } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
+import setPropertieString from '../helper/setPropertieString'
+import setPropertieList from '../helper/setPropertieList'
 
 export default function Profile(props) {
   const data = props.data;
+  let value
   return (
     <>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
@@ -18,7 +21,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>NIK</strong>
-        <Text>{data.encNik}</Text>
+        {setPropertieString(data.encNik)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -27,7 +30,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Name</strong>
-        <Text>{data.encNama}</Text>
+        {setPropertieString(data.encNama)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -36,7 +39,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>City</strong>
-        <Text>{data.kabupatenKota}</Text>
+        {setPropertieString(data.kabupatenKota)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -45,7 +48,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Gender</strong>
-        <Text>{data.encGender}</Text>
+        {setPropertieString(data.encGender)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -54,7 +57,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Family Status</strong>
-        <Text>{data.encStatusPernikahan}</Text>
+        {setPropertieString(data.encStatusPernikahan)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -63,7 +66,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Occupation</strong>
-        <Text>{data.encPekerjaan}</Text>
+        {setPropertieString(data.encPekerjaan)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -72,7 +75,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Income Range</strong>
-        <Text>{data.encRangeGaji}</Text>
+        {setPropertieString(data.encRangeGaji)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -81,7 +84,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Churn Probability</strong>
-        <Text>{"-"}</Text>
+        {setPropertieString(data.chrunPred)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -90,7 +93,8 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>CLTV</strong>
-        <Text>{"-"}</Text>
+        {setPropertieString(data.labelClvInvestasi)}
+        
       </Grid>
       <Grid
         borderBottom="1px"
@@ -99,14 +103,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Credit Obj</strong>
-          {data.creditObj.split("/").map((obj, i) => (
-            <Grid
-              paddingTop="1"
-              paddingBottom="1"
-            >
-              <Text>{obj}</Text>
-            </Grid>
-          ))}
+        {setPropertieList(data.creditObj)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -121,7 +118,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>No Handphone</strong>
-        <Text>{data.encNoHandphone}</Text>
+        {setPropertieString(data.encNoHandphone)}
       </Grid>
       <Grid 
         borderBottom="1px"
@@ -130,7 +127,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Last Contacted</strong>
-        <Text>{data.encLastContacted}</Text>
+        {setPropertieString(data.encLastContacted)}
       </Grid>
       {/* <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
