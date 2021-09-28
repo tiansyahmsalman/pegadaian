@@ -2,6 +2,7 @@ import { Flex, Text, Grid } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 import setPropertieString from '../helper/setPropertieString'
 import setPropertieList from '../helper/setPropertieList'
+import convertDateTime from '../helper/convertDateTime'
 
 export default function Profile(props) {
   const data = props.data;
@@ -126,7 +127,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Last Contacted</strong>
-        {setPropertieString(new Date(data.encLastContacted).toISOString().split('T')[0])}
+        {setPropertieString(convertDateTime(data.encLastContacted))}
       </Grid>
       {/* <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
