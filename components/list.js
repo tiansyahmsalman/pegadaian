@@ -15,13 +15,13 @@ export default function List(props) {
       <Flex borderBottom='1px' borderColor='gray.200' padding='3'>
         <Container maxWidth='850' p='0' ml='3'>
           <strong>{data.encNama}</strong>
-          <Text>{`Phone : ${data.encNoHandphone}`}</Text>
+          <Text>{`No. Telp : ${data.encNoHandphone}`}</Text>
           {
             !data.listProductRecommendation || data.listProductRecommendation.includes('not ') || data.listProductRecommendation.includes('Not ') ? 
             (
               !data.listHistoryProducts || data.listHistoryProducts.includes('not ') || data.listHistoryProducts.includes('Not ') ? 
-              (<Text>{'List Product Recommendation : -'}</Text>) : (<Text>{`List History Products : ${reFormatList(data.listHistoryProducts)}`}</Text>)
-            ) : (<Text>{`List Product Recommendation : ${reFormatList(data.listProductRecommendation)}`}</Text>)
+              (<Text>{'List rekomendasi produk : -'}</Text>) : (<Text>{`List history produk : ${reFormatList(data.listHistoryProducts)}`}</Text>)
+            ) : (<Text>{`List rekomendasi produk : ${reFormatList(data.listProductRecommendation)}`}</Text>)
           }
         </Container>
       </Flex>

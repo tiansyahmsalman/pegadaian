@@ -1,4 +1,3 @@
-import "../styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import { NavbarContextProvider } from "../components/navbarContext";
 
