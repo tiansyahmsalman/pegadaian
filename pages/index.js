@@ -11,10 +11,8 @@ import { useRouter } from 'next/router'
 import { useNavbarContext } from '../components/navbarContext'
 import Skeleton from '../components/skeletonList'
 
-
 export default function Home() {
   const [data, setData] = React.useState(undefined)
-  // const [info, setInfo] = React.useState('')
   const router = useRouter()
   const navbarContext = useNavbarContext()
   const info = navbarContext.user
@@ -30,7 +28,6 @@ export default function Home() {
   async function fetchDataAudiences () {
     const audiences = await navbarContext.getAudiences()
     if (audiences.data) {
-      // setInfo(`${audiences.data.nodes[0].dedicatedSales.displayField} (${audiences.data.nodes[0].city}) ,`)
       setData(audiences.data.nodes)
     } else {}
   }
@@ -46,19 +43,17 @@ export default function Home() {
   return (
     <div>
       <Layout title='home' className={styles.main}>
-        {/* <Center> */}
-          <Grid m={{base:'0', md:'5'}}>
-            {info ? (
-              <Grid m='3'>
-                <Text>Halo {info.data.userNamaLengkap}</Text>
-                <strong>Ini Target Customer untuk hari ini</strong>
-              </Grid>
-            ):<div />}
-            {data.map((dt)=>{
-              return <List key={dt.id} data={dt} />
-            })}
-          </Grid>
-        {/* </Center> */}
+        <Grid m={{base:'0', md:'5'}}>
+          {info ? (
+            <Grid m='3'>
+              <Text>Halo {info.data.userNamaLengkap}</Text>
+              <strong>Ini Target Customer untuk hari ini</strong>
+            </Grid>
+          ):<div />}
+          {data.map((dt)=>{
+            return <List key={dt.id} data={dt} />
+          })}
+        </Grid>
       </Layout>
     </div>
   )

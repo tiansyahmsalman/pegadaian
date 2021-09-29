@@ -68,13 +68,6 @@ export default function Detail() {
       <Layout title="detail" name={data.encNama} className={styles.main}>
         <Center>
           <Grid width={"850px"}>
-            {/* <Image
-              src={data.picture}
-              alt='image'
-              fit='cover'
-              boxSize='900px'
-              height='450px'
-            /> */}
             <Grid as="div" backgroundColor="whiteAlpha.700" py="2">
               <Container marginLeft="0" fontSize="2xl" mt="5">
                 <strong>{data.encNama}</strong>
