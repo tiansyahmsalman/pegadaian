@@ -7,11 +7,10 @@ import {
   Icon,
   HStack,
 } from "@chakra-ui/react";
-import { useNavbarContext } from "./navbarContext";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 export default function SideNavbar({ ...rest }) {
-  const navbarContext = useNavbarContext();
+  const { asPath } = useRouter();
   const IconGrid = (props) => (
     <Icon {...props}>
       <path
@@ -54,9 +53,8 @@ export default function SideNavbar({ ...rest }) {
           spacing={2}
           px={4}
           py={2}
-          color={navbarContext.activeNavbar === "Home" ? "#5AC421" : "gray"}
+          color={asPath !== "/view/account" ? "#5AC421" : "gray"}
           onClick={async () => {
-            await navbarContext.updateActiveNavbar("Home");
             await Router.push("/");
           }}
         >
@@ -70,9 +68,8 @@ export default function SideNavbar({ ...rest }) {
           spacing={2}
           px={4}
           py={2}
-          color={navbarContext.activeNavbar === "Profile" ? "#5AC421" : "gray"}
+          color={asPath === "/view/account" ? "#5AC421" : "gray"}
           onClick={() => {
-            navbarContext.updateActiveNavbar("Profile");
             Router.push("/view/account");
           }}
         >
