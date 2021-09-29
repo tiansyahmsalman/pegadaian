@@ -92,7 +92,7 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Credit Obj</strong>
+        <strong>Objektif Kredit</strong>
         {setPropertieList(data.creditObj)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5">
