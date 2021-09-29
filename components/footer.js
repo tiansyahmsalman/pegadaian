@@ -1,21 +1,17 @@
 import { Flex, Text, Center, Grid } from "@chakra-ui/react";
 import React from "react";
 import { useRouter } from "next/router";
-import { useNavbarContext } from "../components/navbarContext";
 
 export default function Footer({ children, ...rest }) {
   const router = useRouter();
-  const navbarContext = useNavbarContext();
 
   const handleClick = (e, title) => {
     e.preventDefault();
     if (title === "home") {
       router.push("/");
-      navbarContext.updateActiveNavbar("Home");
     }
     if (title === "profile") {
       router.push("/view/account");
-      navbarContext.updateActiveNavbar("Profile");
     }
   };
 
@@ -36,7 +32,7 @@ export default function Footer({ children, ...rest }) {
         onClick={(e) => {
           handleClick(e, "home");
         }}
-        color={navbarContext.activeNavbar === "Home" ? "#5AC421" : "gray"}
+        color={router.asPath !== "/view/account" ? "#5AC421" : "gray"}
       >
         <Grid align={"center"}>
           <Center>
@@ -62,7 +58,7 @@ export default function Footer({ children, ...rest }) {
         onClick={(e) => {
           handleClick(e, "profile");
         }}
-        color={navbarContext.activeNavbar === "Profile" ? "#5AC421" : "gray"}
+        color={router.asPath === "/view/account" ? "#5AC421" : "gray"}
       >
         <Grid>
           <Center>
