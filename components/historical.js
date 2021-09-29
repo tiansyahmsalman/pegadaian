@@ -3,6 +3,9 @@ import { Flex, Text, Grid } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 import setPropertieString from "../helper/setPropertieString";
 import setPropertieList from "../helper/setPropertieList";
+import setGradeAngsuran from "../helper/setGradeAngsuran";
+import setGradeNonAngsuran from "../helper/setGradeNonAngsuran";
+import setGradeInvestasi from "../helper/setGradeInvestasi";
 
 export default function Historical(props) {
   const data = props.data;
@@ -85,7 +88,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Produk non Angsuran</strong>
-        {setPropertieString(data.segmentInNonAngsuran)}
+        {setPropertieString(setGradeNonAngsuran(data.segmentInNonAngsuran))}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -94,7 +97,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Produk Angsuran</strong>
-        {setPropertieString(data.segmentInAngsuran)}
+        {setPropertieString(setGradeAngsuran(data.segmentInAngsuran))}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -103,7 +106,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Produk Investasi</strong>
-        {setPropertieString(data.segmentInInvestasi)}
+        {setPropertieString(setGradeInvestasi(data.segmentInInvestasi))}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
