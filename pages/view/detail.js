@@ -65,12 +65,7 @@ export default function Detail() {
 
   return (
     <div>
-      <Layout
-        title="detail"
-        name={data.encNama}
-        className={styles.main}
-        position="fixed"
-      >
+      <Layout title="detail" name={data.encNama} className={styles.main}>
         <Center>
           <Grid width={"850px"}>
             {/* <Image
@@ -81,7 +76,7 @@ export default function Detail() {
               height='450px'
             /> */}
             <Grid as="div" backgroundColor="whiteAlpha.700" py="2">
-              <Container marginLeft="0" fontSize='2xl' mt='5'>
+              <Container marginLeft="0" fontSize="2xl" mt="5">
                 <strong>{data.encNama}</strong>
                 <Text>Kota : {data.kabupatenKota}</Text>
               </Container>
@@ -89,7 +84,7 @@ export default function Detail() {
             <Tabs isFitted variant="enclosed">
               <TabList paddingTop="4">
                 <Tab
-                  _selected={{ color: "white", bg: "#5AC421" }}
+                  _selected={{ color: "white", bg: "#5AC421", zIndex: "-1" }}
                   fontSize="1xl"
                   fontWeight="bold"
                   marginLeft="4"
@@ -97,7 +92,7 @@ export default function Detail() {
                   Detail
                 </Tab>
                 <Tab
-                  _selected={{ color: "white", bg: "#5AC421" }}
+                  _selected={{ color: "white", bg: "#5AC421", zIndex: "-1" }}
                   fontSize="1xl"
                   fontWeight="bold"
                   marginRight="4"

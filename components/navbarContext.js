@@ -2,8 +2,6 @@ import React from "react";
 import axios from "axios";
 
 const NavbarContext = React.createContext({
-  updateActiveNavbar: () => {},
-  activeNavbar: "",
   user: "",
   getAudience: (id) => {},
   getAudiences: () => {},
@@ -11,41 +9,38 @@ const NavbarContext = React.createContext({
   getCustomerServices: () => {},
   getProducts: () => {},
   login: (email, password) => {},
-  auth: () => {}
+  auth: () => {},
 });
 
 function useNavbar() {
   const [state, setState] = React.useState({
-    activeNavbar: "Home",
     user: "",
-    audiences: []
+    audiences: [],
   });
 
-  const updateActiveNavbar = (prop) => {
-    setState((prevState) => ({
-      ...prevState,
-      activeNavbar: prop,
-    }));
-  };
-
   const auth = async () => {
-    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
+    const basicUrl =
+      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
+      process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/me`;
     const headers = { authorization: Bearer };
     try {
       const data = await axios.get(url, { headers });
-      setState((prev)=> ({
-        ...prev, user: data.data
-      }))
+      setState((prev) => ({
+        ...prev,
+        user: data.data,
+      }));
       return data;
     } catch (error) {
-      return error.message
+      return error.message;
     }
   };
 
   const getAudience = async (id) => {
-    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
+    const basicUrl =
+      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
+      process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/allDailyAudienceAllocation/rows/${id}`;
     const headers = { authorization: Bearer };
@@ -59,7 +54,9 @@ function useNavbar() {
   };
 
   const getAudiences = async () => {
-    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
+    const basicUrl =
+      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
+      process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/allDailyAudienceAllocation/rows?limit=50&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
@@ -73,7 +70,9 @@ function useNavbar() {
   };
 
   const getCampaigns = async () => {
-    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
+    const basicUrl =
+      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
+      process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/campaignsWithAudienceFilter/rows?limit=50&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
@@ -87,7 +86,9 @@ function useNavbar() {
   };
 
   const getCustomerServices = async () => {
-    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
+    const basicUrl =
+      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
+      process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/customerServicesWithAudiences/rows?limit=50&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
@@ -101,7 +102,9 @@ function useNavbar() {
   };
 
   const getProducts = async () => {
-    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
+    const basicUrl =
+      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
+      process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
@@ -115,7 +118,9 @@ function useNavbar() {
   };
 
   const login = async (email, password) => {
-    const basicUrl = process.env.NEXT_PUBLIC_QORE_ENDPOINT + process.env.NEXT_PUBLIC_PROJECT_ID;
+    const basicUrl =
+      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
+      process.env.NEXT_PUBLIC_PROJECT_ID;
     const url = `${basicUrl}/authenticate/password`;
     const body = {
       identifier: email,
@@ -132,11 +137,9 @@ function useNavbar() {
 
   React.useEffect(async () => {
     await auth();
-  },[])
+  }, []);
 
   return {
-    updateActiveNavbar,
-    activeNavbar: state.activeNavbar,
     user: state.user,
     getAudience,
     getAudiences,
@@ -144,7 +147,7 @@ function useNavbar() {
     getCustomerServices,
     getProducts,
     login,
-    auth
+    auth,
   };
 }
 
