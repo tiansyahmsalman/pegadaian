@@ -50,15 +50,6 @@ export default function Profile(props) {
         <strong>Jenis Kelamin</strong>
         {setPropertieString(data.encGender)}
       </Grid>
-      {/* <Grid
-        borderBottom="1px"
-        borderColor="gray.200"
-        paddingTop="3"
-        paddingBottom="3"
-      >
-        <strong>Family Status</strong>
-        {setPropertieString(data.encStatusPernikahan)}
-      </Grid> */}
       <Grid
         borderBottom="1px"
         borderColor="gray.200"
