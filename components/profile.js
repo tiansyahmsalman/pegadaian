@@ -11,7 +11,7 @@ export default function Profile(props) {
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Profile
+          Informasi Pribadi
         </Text>
       </Flex>
       <Grid
@@ -29,7 +29,7 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Name</strong>
+        <strong>Nama</strong>
         {setPropertieString(data.encNama)}
       </Grid>
       <Grid
@@ -38,7 +38,7 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>City</strong>
+        <strong>Kota / Domisili</strong>
         {setPropertieString(data.kabupatenKota)}
       </Grid>
       <Grid
@@ -47,10 +47,10 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Gender</strong>
+        <strong>Jenis Kelamin</strong>
         {setPropertieString(data.encGender)}
       </Grid>
-      <Grid
+      {/* <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
@@ -58,14 +58,14 @@ export default function Profile(props) {
       >
         <strong>Family Status</strong>
         {setPropertieString(data.encStatusPernikahan)}
-      </Grid>
+      </Grid> */}
       <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Occupation</strong>
+        <strong>Pekerjaan</strong>
         {setPropertieString(data.encPekerjaan)}
       </Grid>
       <Grid
@@ -74,7 +74,7 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Income Range</strong>
+        <strong>Pendapatan</strong>
         {setPropertieString(data.encRangeGaji)}
       </Grid>
       <Grid
@@ -83,8 +83,8 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Churn Probability</strong>
-        {setPropertieString(data.churnPred)}
+        <strong>Potensi nasabah akan berhenti membeli produk Pegadaian</strong>
+        <Flex>{setPropertieString(data.churnPred)}{'%'}</Flex>
       </Grid>
       <Grid
         borderBottom="1px"
@@ -92,13 +92,13 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Credit Obj</strong>
+        <strong>Objektif Kredit</strong>
         {setPropertieList(data.creditObj)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Contact Detail
+          Rincian Kontak
         </Text>
       </Flex>
       <Grid 
@@ -107,7 +107,7 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>No Handphone</strong>
+        <strong>Nomor Telepon</strong>
         {setPropertieString(data.encNoHandphone)}
       </Grid>
       <Grid 
@@ -116,15 +116,9 @@ export default function Profile(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Last Contacted</strong>
+        <strong>Terakhir Dikontak</strong>
         {setPropertieString(convertDateTime(data.encLastContacted))}
       </Grid>
-      {/* <Flex backgroundColor="blue.50" borderRadius="5">
-        <InfoIcon boxSize="6" color="purple.900" margin="3" />
-        <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Customer Service
-        </Text>
-      </Flex>       */}
     </>
   );
 }

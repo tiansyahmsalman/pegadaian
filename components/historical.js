@@ -1,8 +1,11 @@
 import React from "react";
 import { Flex, Text, Grid } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
-import setPropertieString from '../helper/setPropertieString'
-import setPropertieList from '../helper/setPropertieList'
+import setPropertieString from "../helper/setPropertieString";
+import setPropertieList from "../helper/setPropertieList";
+import setGradeAngsuran from "../helper/setGradeAngsuran";
+import setGradeNonAngsuran from "../helper/setGradeNonAngsuran";
+import setGradeInvestasi from "../helper/setGradeInvestasi";
 
 export default function Historical(props) {
   const data = props.data;
@@ -12,31 +15,31 @@ export default function Historical(props) {
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Lifestyle and Life Stage
+          Gaya Hidup & Tahap Kehidupan
         </Text>
       </Flex>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="0"
         paddingBottom="0"
       >
-        <strong>Age</strong>
+        <strong>Umur</strong>
         {setPropertieString(data.encUsia)}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Marital Status</strong>
+        <strong>Status Pernikahan</strong>
         {setPropertieString(data.encStatusPernikahan)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Product
+          Produk
         </Text>
       </Flex>
       <Grid
@@ -45,148 +48,148 @@ export default function Historical(props) {
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Closed Product</strong>
+        <strong>Transaksi yang sudah selesai</strong>
         {setPropertieList(data.listHistoryProducts)}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Ongoing Product</strong>
+        <strong>Transaksi yang sedang berlangsung</strong>
         {setPropertieList(data.listActiveProducts)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Upsell & Cross Sell
+          Up-sell & Cross-sell
         </Text>
       </Flex>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>List Product Recommendation</strong>
+        <strong>Rekomendasi produk</strong>
         {setPropertieList(data.listProductRecomendation)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Transaction Segmentation
+          Segmentasi Transaksi
         </Text>
       </Flex>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Segment non Angsuran</strong>
-        {setPropertieString(data.segmentInNonAngsuran)}
+        <strong>Produk non Angsuran</strong>
+        {setPropertieString(setGradeNonAngsuran(data.segmentInNonAngsuran))}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Segment Angsuran</strong>
-        {setPropertieString(data.segmentInAngsuran)}
+        <strong>Produk Angsuran</strong>
+        {setPropertieString(setGradeAngsuran(data.segmentInAngsuran))}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Segment Investasi</strong>
-        {setPropertieString(data.segmentInInvestasi)}
+        <strong>Produk Investasi</strong>
+        {setPropertieString(setGradeInvestasi(data.segmentInInvestasi))}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          CLV
+          Nilai Konsumen
         </Text>
       </Flex>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Predicted CLV Investasi</strong>
-        {setPropertieString(data.predictedClvnvestasi)}
-      </Grid>
-      <Grid 
-        borderBottom="1px"
-        borderColor="gray.200"
-        paddingTop="3"
-        paddingBottom="3"
-      >
-        <strong>Label CLV Investasi</strong>
-        {setPropertieString(data.labelClvInvestasi)}
-      </Grid>
-      <Grid 
-        borderBottom="1px"
-        borderColor="gray.200"
-        paddingTop="3"
-        paddingBottom="3"
-      >
-        <strong>Predicted CLV Angsuran</strong>
-        {setPropertieString(data.predictedClvAngsuran)}
-      </Grid>
-      <Grid 
-        borderBottom="1px"
-        borderColor="gray.200"
-        paddingTop="3"
-        paddingBottom="3"
-      >
-        <strong>Label CLV Angsuran</strong>
-        {setPropertieString(data.labelClvAngsuran)}
-      </Grid>
-      <Grid 
-        borderBottom="1px"
-        borderColor="gray.200"
-        paddingTop="3"
-        paddingBottom="3"
-      >
-        <strong>Predicted CLV non Angsuran</strong>
-        {setPropertieString(data.predictedClvNonAngsuran)}
-      </Grid>
-      <Grid 
-        borderBottom="1px"
-        borderColor="gray.200"
-        paddingTop="3"
-        paddingBottom="3"
-      >
-        <strong>Label CLV non Angsuran</strong>
+        <strong>Tipe Nasabah - Produk non Angsuran</strong>
         {setPropertieString(data.labelClvNonAngsuran)}
       </Grid>
-      <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
-        <InfoIcon boxSize="6" color="purple.900" margin="3" />
-        <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Campaign
-        </Text>
-      </Flex>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Campaign accepted</strong>
+        <strong>Prediksi Pengeluaran Nasabah - Produk non Angsuran</strong>
+        {setPropertieString(data.predictedClvNonAngsuran)}
+      </Grid>
+      <Grid
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Tipe Nasabah - Produk Angsuran</strong>
+        {setPropertieString(data.labelClvAngsuran)}
+      </Grid>
+      <Grid
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Prediksi Pengeluaran Nasabah - Produk Angsuran</strong>
+        {setPropertieString(data.predictedClvAngsuran)}
+      </Grid>
+      <Grid
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Tipe Nasabah - Produk Investasi</strong>
+        {setPropertieString(data.labelClvInvestasi)}
+      </Grid>
+      <Grid
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Prediksi Pengeluaran Nasabah - Produk Investasi</strong>
+        {setPropertieString(data.predictedClvnvestasi)}
+      </Grid>
+      <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
+        <InfoIcon boxSize="6" color="purple.900" margin="3" />
+        <Text fontSize="1xl" fontWeight="bold" margin="3">
+          Kampanye
+        </Text>
+      </Flex>
+      <Grid
+        borderBottom="1px"
+        borderColor="gray.200"
+        paddingTop="3"
+        paddingBottom="3"
+      >
+        <strong>Kampanye diterima</strong>
         {setPropertieString(data.campaignStatus)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
-          Other Information
+          Informasi Lainnya
         </Text>
       </Flex>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
@@ -195,61 +198,61 @@ export default function Historical(props) {
         <strong>Outlet</strong>
         {setPropertieString(data.outlet)}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Outlet Code</strong>
+        <strong>Kode Outlet</strong>
         {setPropertieString(data.kodeOutlet)}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Branch</strong>
+        <strong>Cabang</strong>
         {setPropertieString(data.cabang)}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Branch Code</strong>
+        <strong>Kode Cabang</strong>
         {setPropertieString(data.kodeCabang)}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Regional Office</strong>
+        <strong>Kantor Wilayah</strong>
         {setPropertieString(data.kanwil)}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Province</strong>
+        <strong>Provinsi</strong>
         {setPropertieString(data.namaProvinsi)}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
-        <strong>Customer Status</strong>
+        <strong>Status Karyawan</strong>
         {setPropertieString(data.statusNasabah)}
       </Grid>
-      <Grid 
+      <Grid
         borderBottom="1px"
         borderColor="gray.200"
         paddingTop="3"
