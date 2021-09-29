@@ -97,7 +97,7 @@ export default function Detail() {
                   fontWeight="bold"
                   marginRight="4"
                 >
-                  Historical
+                  Riwayat
                 </Tab>
               </TabList>
               <TabPanels>
