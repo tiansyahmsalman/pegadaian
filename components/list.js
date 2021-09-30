@@ -2,8 +2,6 @@ import Link from 'next/link'
 import {
   Flex,
   Container,
-  Image,
-  Center,
   Text
 } from '@chakra-ui/react'
 import reFormatList from '../helper/reFormatList'
@@ -20,7 +18,7 @@ export default function List(props) {
             !data.listProductRecommendation || data.listProductRecommendation.includes('not ') || data.listProductRecommendation.includes('Not ') ? 
             (
               !data.listHistoryProducts || data.listHistoryProducts.includes('not ') || data.listHistoryProducts.includes('Not ') ? 
-              (<Text>{'List rekomendasi produk : -'}</Text>) : (<Text>{`List history produk : ${reFormatList(data.listHistoryProducts)}`}</Text>)
+              (<Text>{'List rekomendasi produk : -'}</Text>) : (<Text>{`List rekomendasi produk : ${reFormatList(data.listHistoryProducts)}`}</Text>)
             ) : (<Text>{`List rekomendasi produk : ${reFormatList(data.listProductRecommendation)}`}</Text>)
           }
         </Container>

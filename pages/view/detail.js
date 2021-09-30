@@ -3,7 +3,6 @@ import React from "react";
 import { useRouter } from "next/router";
 import {
   Container,
-  Image,
   Text,
   Grid,
   Tabs,
