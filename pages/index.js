@@ -3,8 +3,7 @@ import React from 'react'
 import List from '../components/list'
 import {
   Text,
-  Grid,
-  Center
+  Grid
 } from '@chakra-ui/react'
 import Layout from '../components/layout'
 import { useRouter } from 'next/router'
