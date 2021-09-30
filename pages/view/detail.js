@@ -3,7 +3,6 @@ import React from "react";
 import { useRouter } from "next/router";
 import {
   Container,
-  Image,
   Text,
   Grid,
   Tabs,
@@ -49,8 +48,8 @@ export default function Detail() {
 
   async function fetchData(id) {
     const audience = await navbarContext.getAudience(id);
-    if (audience.data) {
-      setData(audience.data);
+    if (audience.data[0]) {
+      setData(audience.data[0]);
     } else {
     }
   }

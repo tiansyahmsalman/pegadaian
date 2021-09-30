@@ -47,6 +47,13 @@ function useNavbar() {
 
     try {
       const data = await axios.get(url, { headers });
+      // if (process.env.NEXT_PUBLIC_NODE_ENV === "production") {
+      //   let dataDecrypt = await decryptList([data.data]);
+      //   data.data = dataDecrypt;
+      //   return data;
+      // }
+      let dataDecrypt = await decryptList([data.data]);
+      data.data = dataDecrypt;
       return data;
     } catch (error) {
       return error.message;
@@ -58,59 +65,18 @@ function useNavbar() {
       process.env.NEXT_PUBLIC_QORE_ENDPOINT +
       process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
-    const url = `${basicUrl}/allDailyAudienceAllocation/rows?limit=50&offset=0&$order=asc`;
+    const url = `${basicUrl}/allDailyAudienceAllocation/rows?limit=10&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
 
     try {
       const data = await axios.get(url, { headers });
-      return data;
-    } catch (error) {
-      return error.message;
-    }
-  };
-
-  const getCampaigns = async () => {
-    const basicUrl =
-      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
-      process.env.NEXT_PUBLIC_PROJECT_ID;
-    const Bearer = `Bearer ${localStorage.getItem("token")}`;
-    const url = `${basicUrl}/campaignsWithAudienceFilter/rows?limit=50&offset=0&$order=asc`;
-    const headers = { authorization: Bearer };
-
-    try {
-      const data = await axios.get(url, { headers });
-      return data;
-    } catch (error) {
-      return error.message;
-    }
-  };
-
-  const getCustomerServices = async () => {
-    const basicUrl =
-      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
-      process.env.NEXT_PUBLIC_PROJECT_ID;
-    const Bearer = `Bearer ${localStorage.getItem("token")}`;
-    const url = `${basicUrl}/customerServicesWithAudiences/rows?limit=50&offset=0&$order=asc`;
-    const headers = { authorization: Bearer };
-
-    try {
-      const data = await axios.get(url, { headers });
-      return data;
-    } catch (error) {
-      return error.message;
-    }
-  };
-
-  const getProducts = async () => {
-    const basicUrl =
-      process.env.NEXT_PUBLIC_QORE_ENDPOINT +
-      process.env.NEXT_PUBLIC_PROJECT_ID;
-    const Bearer = `Bearer ${localStorage.getItem("token")}`;
-    const url = `${basicUrl}/productWithAudienceFilter/rows?limit=50&offset=0&$order=asc`;
-    const headers = { authorization: Bearer };
-
-    try {
-      const data = await axios.get(url, { headers });
+      // if (process.env.NEXT_PUBLIC_NODE_ENV === "production") {
+      //   let dataDecrypt = await decryptList(data.data.nodes);
+      //   data.data.nodes = dataDecrypt;
+      //   return data;
+      // }
+      let dataDecrypt = await decryptList(data.data.nodes);
+      data.data.nodes = dataDecrypt;
       return data;
     } catch (error) {
       return error.message;
@@ -135,6 +101,41 @@ function useNavbar() {
     }
   };
 
+  const decryptList = async (payload) => {
+    let arrData = [];
+    let arrResult = [];
+    let keys = Object.keys(payload[0]);
+    for (let i = 0; i < payload.length; i++) {
+      for (const key in payload[i]) {
+        if (payload[i][key]) {
+          arrData.push(payload[i][key]);
+        } else {
+          arrData.push("-");
+        }
+      }
+    }
+    const url = process.env.NEXT_PUBLIC_DECRYPT;
+    const body = { data: arrData };
+
+    try {
+      const data = await axios.post(url, body);
+      let list = data.data.result;
+      for (let i = 0; i < list.length; i++) {
+        let obj = {};
+        keys.map((key, j) => {
+          obj[key] = list[i];
+          i++;
+        });
+        arrResult.push(obj);
+        i -= 1;
+      }
+      setState((prev) => ({ ...prev, audiences: arrResult }));
+      return arrResult;
+    } catch (error) {
+      return error.message;
+    }
+  };
+
   React.useEffect(async () => {
     await auth();
   }, []);
@@ -143,9 +144,6 @@ function useNavbar() {
     user: state.user,
     getAudience,
     getAudiences,
-    getCampaigns,
-    getCustomerServices,
-    getProducts,
     login,
     auth,
   };

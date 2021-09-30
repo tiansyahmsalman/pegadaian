@@ -2,7 +2,6 @@ import {
     Flex,
     Text,
     Spacer,
-    Link,
     Box
   } from '@chakra-ui/react'
 import { ArrowBackIcon } from '@chakra-ui/icons'
@@ -45,3 +44,4 @@ export default function NavbarDetail(props) {
         </Flex>
     )
   }
+  
