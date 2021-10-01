@@ -73,7 +73,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Rekomendasi produk</strong>
-        {setPropertieList(data.listProductRecomendation)}
+        {setPropertieList(data.listProductRecommendation)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />

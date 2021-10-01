@@ -16,7 +16,7 @@ export default function List(props) {
           <Text>{data.encNoHandphone}</Text>
           {
             !data.listProductRecommendation || data.listProductRecommendation.includes('not ') || data.listProductRecommendation.includes('Not ') ? 
-            (<Text>{'-'}</Text>) : (<Text>{reFormatList(data.listProductRecommendation)}</Text>)
+            (<Text>{'Rekomendasi: Tidak ada'}</Text>) : (<Text>{`Rekomendasi: ${reFormatList(data.listProductRecommendation)}`}</Text>)
           }
         </Container>
       </Flex>

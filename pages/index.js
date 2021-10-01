@@ -46,7 +46,7 @@ export default function Home() {
           {info ? (
             <Grid m='3'>
               <Text>Halo {info.data.userNamaLengkap}</Text>
-              <strong>Ini Target Customer untuk hari ini</strong>
+              <strong>Berikut 10 rekomendasi nasabah untuk hari ini</strong>
             </Grid>
           ):<div />}
           {data.map((dt)=>{
