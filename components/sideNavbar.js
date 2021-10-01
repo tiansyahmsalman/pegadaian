@@ -40,7 +40,7 @@ export default function SideNavbar({ ...rest }) {
       {...rest}
     >
       <Flex h="16" alignItems="center" mx="6" justifyContent="space-between">
-        <Text fontSize="xl" fontFamily="serif" fontWeight="bold">
+        <Text fontSize="xl" fontWeight="bold">
           UCCI Pegadaian
         </Text>
       </Flex>
