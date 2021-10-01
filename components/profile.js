@@ -75,7 +75,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Potensi nasabah akan berhenti membeli produk Pegadaian</strong>
-        <Flex>{setPropertieString(data.churnPred)}{'%'}</Flex>
+        <Flex>{setPropertieString(data.churnPred)}</Flex>
       </Grid>
       <Grid
         borderBottom="1px"
