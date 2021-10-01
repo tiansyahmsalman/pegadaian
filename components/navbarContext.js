@@ -47,11 +47,6 @@ function useNavbar() {
 
     try {
       const data = await axios.get(url, { headers });
-      // if (process.env.NEXT_PUBLIC_NODE_ENV === "production") {
-      //   let dataDecrypt = await decryptList([data.data]);
-      //   data.data = dataDecrypt;
-      //   return data;
-      // }
       let dataDecrypt = await decryptList([data.data]);
       data.data = dataDecrypt;
       return data;
@@ -70,11 +65,6 @@ function useNavbar() {
 
     try {
       const data = await axios.get(url, { headers });
-      // if (process.env.NEXT_PUBLIC_NODE_ENV === "production") {
-      //   let dataDecrypt = await decryptList(data.data.nodes);
-      //   data.data.nodes = dataDecrypt;
-      //   return data;
-      // }
       let dataDecrypt = await decryptList(data.data.nodes);
       data.data.nodes = dataDecrypt;
       return data;
