@@ -65,7 +65,7 @@ function useNavbar() {
       process.env.NEXT_PUBLIC_QORE_ENDPOINT +
       process.env.NEXT_PUBLIC_PROJECT_ID;
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
-    const url = `${basicUrl}/allDailyAudienceAllocation/rows?limit=10&offset=0&$order=asc`;
+    const url = `${basicUrl}/filteredAudiences/rows?limit=10&offset=0&$order=asc`;
     const headers = { authorization: Bearer };
 
     try {
