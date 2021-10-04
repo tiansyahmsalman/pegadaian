@@ -25,12 +25,19 @@ function useNavbar() {
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/me`;
     const headers = { authorization: Bearer };
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY
+    const today = new Date();
+
     try {
       const data = await axios.get(url, { headers });
+      const rowId = data.data.data.id
       setState((prev) => ({
         ...prev,
         user: data.data,
       }));
+      const urlPatch = `${basicUrl}/allMember/rows/${rowId}`
+      await axios.patch(urlPatch, { lastLogin: today }, { headers: {'x-api-key': apiKey } });
+      
       return data;
     } catch (error) {
       return error.message;
@@ -65,8 +72,10 @@ function useNavbar() {
 
     try {
       const data = await axios.get(url, { headers });
-      let dataDecrypt = await decryptList(data.data.nodes);
-      data.data.nodes = dataDecrypt;
+      if (data.data.nodes.length > 0) {
+        let dataDecrypt = await decryptList(data.data.nodes);
+        data.data.nodes = dataDecrypt;
+      }
       return data;
     } catch (error) {
       return error.message;
@@ -127,7 +136,7 @@ function useNavbar() {
   };
 
   React.useEffect(async () => {
-    await auth();
+    // await auth();
   }, []);
 
   return {
