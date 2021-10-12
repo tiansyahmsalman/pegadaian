@@ -20,6 +20,8 @@ import Skeleton from "../../components/skeletonDetail";
 
 export default function Detail() {
   const [data, setData] = React.useState({});
+  const [dataHistories, setDataHistories] = React.useState();
+  const [dataLtv, setDataLtv] = React.useState();
   const query = useQuery();
   const router = useRouter();
   const navbarContext = useNavbarContext();
@@ -48,8 +50,10 @@ export default function Detail() {
 
   async function fetchData(id) {
     const audience = await navbarContext.getAudience(id);
-    if (audience.data[0]) {
-      setData(audience.data[0]);
+    if (audience.data) {
+      setDataHistories(audience.dataHistories)
+      setData(audience.data.data[0]);
+      setDataLtv(audience.dataLtv)
     } else {
     }
   }
@@ -97,7 +101,7 @@ export default function Detail() {
                   <Profile data={data} />
                 </TabPanel>
                 <TabPanel>
-                  <Historical data={data} />
+                  <Historical data={data} dataHistories={dataHistories} dataLtv={dataLtv}/>
                 </TabPanel>
               </TabPanels>
             </Tabs>

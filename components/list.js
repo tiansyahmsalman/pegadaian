@@ -4,7 +4,6 @@ import {
   Container,
   Text
 } from '@chakra-ui/react'
-import reFormatList from '../helper/reFormatList'
 
 export default function List(props) {
   const data = props.data
@@ -16,7 +15,7 @@ export default function List(props) {
           <Text>{data.encNoHandphone}</Text>
           {
             !data.listProductRecommendation || data.listProductRecommendation.includes('not ') || data.listProductRecommendation.includes('Not ') ? 
-            (<Text>{'Rekomendasi: Tidak ada'}</Text>) : (<Text>{`Rekomendasi: ${reFormatList(data.listProductRecommendation)}`}</Text>)
+            (<Text>{'Rekomendasi: Tidak ada'}</Text>) : (<Text>{`Rekomendasi: ${data.listProductRecommendation.toString().replaceAll(",", ", ")}`}</Text>)
           }
         </Container>
       </Flex>
