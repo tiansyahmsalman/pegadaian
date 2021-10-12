@@ -1,14 +1,29 @@
 import React from "react";
 import { Flex, Text, Grid } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
-import setPropertieString from "../helper/setPropertieString";
-import setPropertieList from "../helper/setPropertieList";
+import setPropertyString from "../helper/setPropertyString";
+import setPropertyList from "../helper/setPropertyList";
 import setGradeAngsuran from "../helper/setGradeAngsuran";
 import setGradeNonAngsuran from "../helper/setGradeNonAngsuran";
 import setGradeInvestasi from "../helper/setGradeInvestasi";
+import setPropertyArray from "../helper/setPropertyArray";
+import getHistory from "../helper/getHistory"
+import setLtv from "../helper/setLtv"
 
 export default function Historical(props) {
   const data = props.data;
+  const dataHistories = props.dataHistories
+  const dataLtv = props.dataLtv
+  const [campaigns, setCampaigns] = React.useState();
+  const [historyProducts, setHistoryProducts] = React.useState();
+
+  React.useEffect(() => {
+    if (dataHistories.length > 0) {
+      const {campaignsArr, historyProductsArr} = getHistory(dataHistories)
+      if (campaignsArr.length > 0) setCampaigns(campaignsArr);
+      if (historyProductsArr.length > 0) setHistoryProducts(historyProductsArr);
+    }
+  },[])
 
   return (
     <>
@@ -25,7 +40,7 @@ export default function Historical(props) {
         paddingBottom="0"
       >
         <strong>Umur</strong>
-        {setPropertieString(data.encUsia)}
+        {setPropertyString(data.encUsia)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -34,7 +49,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Status Pernikahan</strong>
-        {setPropertieString(data.encStatusPernikahan)}
+        {setPropertyString(data.encStatusPernikahan)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -43,13 +58,13 @@ export default function Historical(props) {
         </Text>
       </Flex>
       <Grid
-        borderBottom="1px"
+        borderBottom={ dataHistories && dataHistories.length > 0 ? "0px" : "1px"}
         borderColor="gray.200"
         paddingTop="3"
         paddingBottom="3"
       >
         <strong>Transaksi yang sudah selesai</strong>
-        {setPropertieList(data.listHistoryProducts)}
+        {setPropertyArray(historyProducts)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -58,7 +73,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Transaksi yang sedang berlangsung</strong>
-        {setPropertieList(data.listActiveProducts)}
+        {setPropertyList(data.listActiveProducts)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -73,7 +88,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Rekomendasi produk</strong>
-        {setPropertieList(data.listProductRecommendation)}
+        {setPropertyList(data.listProductRecommendation)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -88,7 +103,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Produk non Angsuran</strong>
-        {setPropertieString(setGradeNonAngsuran(data.segmentInNonAngsuran))}
+        {setPropertyString(setGradeNonAngsuran(data.segmentInNonAngsuran))}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -97,7 +112,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Produk Angsuran</strong>
-        {setPropertieString(setGradeAngsuran(data.segmentInAngsuran))}
+        {setPropertyString(setGradeAngsuran(data.segmentInAngsuran))}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -106,7 +121,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Produk Investasi</strong>
-        {setPropertieString(setGradeInvestasi(data.segmentInInvestasi))}
+        {setPropertyString(setGradeInvestasi(data.segmentInInvestasi))}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -121,7 +136,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Tipe Nasabah - Produk non Angsuran</strong>
-        {setPropertieString(data.labelClvNonAngsuran)}
+        {setPropertyString(data.labelClvNonAngsuran)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -130,7 +145,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Prediksi Pengeluaran Nasabah - Produk non Angsuran</strong>
-        {setPropertieString(data.predictedClvNonAngsuran)}
+        {setPropertyString(data.predictedClvNonAngsuran)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -139,7 +154,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Tipe Nasabah - Produk Angsuran</strong>
-        {setPropertieString(data.labelClvAngsuran)}
+        {setPropertyString(data.labelClvAngsuran)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -148,7 +163,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Prediksi Pengeluaran Nasabah - Produk Angsuran</strong>
-        {setPropertieString(data.predictedClvAngsuran)}
+        {setPropertyString(data.predictedClvAngsuran)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -157,7 +172,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Tipe Nasabah - Produk Investasi</strong>
-        {setPropertieString(data.labelClvInvestasi)}
+        {setPropertyString(data.labelClvInvestasi)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -166,7 +181,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Prediksi Pengeluaran Nasabah - Produk Investasi</strong>
-        {setPropertieString(data.predictedClvnvestasi)}
+        {setPropertyString(data.predictedClvnvestasi)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -181,8 +196,15 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Kampanye diterima</strong>
-        {setPropertieString(data.campaignStatus)}
+        {setPropertyArray(campaigns)}
       </Grid>
+      <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
+        <InfoIcon boxSize="6" color="purple.900" margin="3" />
+        <Text fontSize="1xl" fontWeight="bold" margin="3">
+          LTV
+        </Text>
+      </Flex>
+      {setLtv(dataLtv)}
       <Flex backgroundColor="blue.50" borderRadius="5" marginBottom="3">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
         <Text fontSize="1xl" fontWeight="bold" margin="3">
@@ -196,7 +218,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Outlet</strong>
-        {setPropertieString(data.outlet)}
+        {setPropertyString(data.outlet)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -205,7 +227,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Kode Outlet</strong>
-        {setPropertieString(data.kodeOutlet)}
+        {setPropertyString(data.kodeOutlet)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -214,7 +236,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Cabang</strong>
-        {setPropertieString(data.cabang)}
+        {setPropertyString(data.cabang)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -223,7 +245,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Kode Cabang</strong>
-        {setPropertieString(data.kodeCabang)}
+        {setPropertyString(data.kodeCabang)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -232,7 +254,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Kantor Wilayah</strong>
-        {setPropertieString(data.kanwil)}
+        {setPropertyString(data.kanwil)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -241,7 +263,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Provinsi</strong>
-        {setPropertieString(data.namaProvinsi)}
+        {setPropertyString(data.namaProvinsi)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -250,7 +272,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Status Karyawan</strong>
-        {setPropertieString(data.statusNasabah)}
+        {setPropertyString(data.statusNasabah)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -259,7 +281,7 @@ export default function Historical(props) {
         paddingBottom="3"
       >
         <strong>Rating</strong>
-        {setPropertieString(data.rating)}
+        {setPropertyString(data.rating)}
       </Grid>
     </>
   );

@@ -1,7 +1,7 @@
 import { Flex, Text, Grid } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
-import setPropertieString from '../helper/setPropertieString'
-import setPropertieList from '../helper/setPropertieList'
+import setPropertyString from '../helper/setPropertyString'
+import setPropertyList from '../helper/setPropertyList'
 import convertDateTime from '../helper/convertDateTime'
 
 export default function Profile(props) {
@@ -21,7 +21,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>NIK</strong>
-        {setPropertieString(data.encNik)}
+        {setPropertyString(data.encNik)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -30,7 +30,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Nama</strong>
-        {setPropertieString(data.encNama)}
+        {setPropertyString(data.encNama)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -39,7 +39,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Kota / Domisili</strong>
-        {setPropertieString(data.kabupatenKota)}
+        {setPropertyString(data.kabupatenKota)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -48,7 +48,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Jenis Kelamin</strong>
-        {setPropertieString(data.encGender)}
+        {setPropertyString(data.encGender)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -57,7 +57,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Pekerjaan</strong>
-        {setPropertieString(data.encPekerjaan)}
+        {setPropertyString(data.encPekerjaan)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -66,7 +66,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Pendapatan</strong>
-        {setPropertieString(data.encRangeGaji)}
+        {setPropertyString(data.encRangeGaji)}
       </Grid>
       <Grid
         borderBottom="1px"
@@ -75,7 +75,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Potensi nasabah akan berhenti membeli produk Pegadaian</strong>
-        <Flex>{setPropertieString(data.churnPred)}</Flex>
+        <Flex>{setPropertyString(data.churnPred)}</Flex>
       </Grid>
       <Grid
         borderBottom="1px"
@@ -84,7 +84,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Objektif Kredit</strong>
-        {setPropertieList(data.creditObj)}
+        {setPropertyList(data.creditObj)}
       </Grid>
       <Flex backgroundColor="blue.50" borderRadius="5">
         <InfoIcon boxSize="6" color="purple.900" margin="3" />
@@ -99,7 +99,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Nomor Telepon</strong>
-        {setPropertieString(data.encNoHandphone)}
+        {setPropertyString(data.encNoHandphone)}
       </Grid>
       <Grid 
         borderBottom="1px"
@@ -108,7 +108,7 @@ export default function Profile(props) {
         paddingBottom="3"
       >
         <strong>Terakhir Dikontak</strong>
-        {setPropertieString(convertDateTime(data.encLastContacted))}
+        {setPropertyString(convertDateTime(data.encLastContacted))}
       </Grid>
     </>
   );
