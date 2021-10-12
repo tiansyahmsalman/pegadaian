@@ -51,12 +51,23 @@ function useNavbar() {
     const Bearer = `Bearer ${localStorage.getItem("token")}`;
     const url = `${basicUrl}/allDailyAudienceAllocation/rows/${id}`;
     const headers = { authorization: Bearer };
+    const historyUrl = process.env.NEXT_PUBLIC_HISTORY
+    const ltvUrl = process.env.NEXT_PUBLIC_LTV
 
     try {
-      const data = await axios.get(url, { headers });
-      let dataDecrypt = await decryptList([data.data]);
+      const {data} = await axios.get(url, { headers });
+      const histories = await axios.post(historyUrl, { cif: data.encCif })
+      const dataHistories = histories.data.result
+      const ltv = await axios.post(ltvUrl, { nik: data.encNik })
+      const dataLtv = ltv.data.result
+
+      dataHistories.sort(function(a,b){
+        return new Date(a.properties_tgl_transaksi) - new Date(b.properties_tgl_transaksi)
+      });
+
+      let dataDecrypt = await decryptList([data]);
       data.data = dataDecrypt;
-      return data;
+      return {data, dataHistories, dataLtv};
     } catch (error) {
       return error.message;
     }
@@ -135,9 +146,9 @@ function useNavbar() {
     }
   };
 
-  React.useEffect(async () => {
-    // await auth();
-  }, []);
+  // React.useEffect(async () => {
+  //   // await auth();
+  // }, []);
 
   return {
     user: state.user,
