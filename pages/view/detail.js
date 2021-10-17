@@ -55,6 +55,7 @@ export default function Detail() {
       setData(audience.data.data[0]);
       setDataLtv(audience.dataLtv)
     } else {
+      throw new Error("Frontend Error fetchDataAudience by Id");
     }
   }
 

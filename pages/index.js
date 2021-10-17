@@ -16,11 +16,15 @@ export default function Home() {
   const navbarContext = useNavbarContext()
   const info = navbarContext.user
   React.useEffect(async () => {
-    const user = await navbarContext.auth()
-    if (!user.data) {
-      router.push('/view/login')
+    if (localStorage.getItem("token")) {
+      const user = await navbarContext.auth()
+      if (!user.data) {
+        router.push('/view/login')
+      } else {
+        fetchDataAudiences()
+      }
     } else {
-      fetchDataAudiences()
+      router.push('/view/login')
     }
   },[])
 
@@ -28,7 +32,9 @@ export default function Home() {
     const audiences = await navbarContext.getAudiences()
     if (audiences.data) {
       setData(audiences.data.nodes)
-    } else {}
+    } else {
+      throw new Error("Frontend Error fetchDataAudiences");
+    }
   }
 
   if (!data) {
