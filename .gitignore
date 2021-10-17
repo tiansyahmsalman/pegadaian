@@ -39,3 +39,5 @@ jspm_packages
 
 # local env files
 .env.local
+# Sentry
+.sentryclirc
