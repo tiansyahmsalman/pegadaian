@@ -22,15 +22,13 @@ import {
     const navbarContext = useNavbarContext()
 
     React.useEffect( async () => {
-      const user = await navbarContext.auth();
-      if (user.data) {
-        router.push('/')
+      if (localStorage.getItem("token")) {
+        const user = await navbarContext.auth();
+        if (user.data) {
+          router.push('/')
+        }
       }
     },[])
-
-    function handleClick() {
-      login()
-    }
 
     async function login () {
       let user = await navbarContext.login(email, password)
@@ -38,11 +36,7 @@ import {
         localStorage.setItem('token', user.data.token)
         router.push('/')
       } else {
-        if (user === 'Request failed with status code 400' || user === 'Request failed with status code 401'){
-          setError('Invalid Email or Password')
-        } else {
-          setError('Something went wrong please try again')
-        }
+        setError(user.error)
       }
     }
   
@@ -85,7 +79,7 @@ import {
                   _hover={{
                     bg: '#6cb740',
                   }}
-                  onClick={handleClick}
+                  onClick={login}
                 >
                   Sign in
                 </Button>
