@@ -32,7 +32,9 @@ export default function Home() {
     const audiences = await navbarContext.getAudiences()
     if (audiences.data) {
       setData(audiences.data.nodes)
-    } else {}
+    } else {
+      throw new Error("Frontend Error fetchDataAudiences");
+    }
   }
 
   if (!data) {
