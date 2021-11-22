@@ -14,7 +14,7 @@ export default function List(props) {
           <strong>{data.encNama}</strong>
           <Text>{data.encNoHandphone}</Text>
           {
-            !data.listProductRecommendation || data.listProductRecommendation.includes('not ') || data.listProductRecommendation.includes('Not ') || data.listProductRecommendation.includes('') ? 
+            !data.listProductRecommendation || data.listProductRecommendation.includes('not ') || data.listProductRecommendation.includes('Not ') ? 
             (<Text>{'Rekomendasi: Saat ini belum ada data tersedia untuk cabang anda'}</Text>) : (<Text>{`Rekomendasi: ${data.listProductRecommendation.toString().replaceAll(",", ", ")}`}</Text>)
           }
         </Container>
