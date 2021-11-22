@@ -39,5 +39,9 @@ jspm_packages
 
 # local env files
 .env.local
+.env
 # Sentry
 .sentryclirc
+
+# package-lock
+package-lock.json
