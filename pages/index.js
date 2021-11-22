@@ -55,7 +55,7 @@ export default function Home() {
               {data.length > 0 ? 
                 <strong>Berikut 10 rekomendasi nasabah untuk hari ini</strong> 
                 : 
-                <strong>Data belum terupdate</strong>
+                <strong>Saat ini belum ada data tersedia untuk cabang anda</strong>
               }
             </Grid>
           ):<div />}
