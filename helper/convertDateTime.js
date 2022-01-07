@@ -1,5 +1,5 @@
 export default function convertDateTime(payload) {
-  if (!payload || payload.includes('not ') || payload.includes('Not ') || payload.includes('-')) {
+  if (!payload || payload.includes('not ') || payload.includes('Not ') || payload === '-') {
     return payload;
   } else {
    try {
